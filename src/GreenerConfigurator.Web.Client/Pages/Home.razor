@@ -1,0 +1,39 @@
+@page "/"
+
+<PageTitle>Greener Admin</PageTitle>
+
+<h1 class="display-6 mb-3">Welcome to Greener Admin</h1>
+<p>
+    This hosted Blazor WebAssembly experience demonstrates how the legacy WPF configurator can be modernised.
+    Use the navigation menu to manage <strong>locations</strong>, <strong>rules</strong>, and the rest of the platform assets.
+</p>
+
+<div class="row gy-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h2 class="h5">Locations</h2>
+                <p>Browse, create, and update locations plus their nested floor details.</p>
+                <NavLink class="btn btn-primary" href="locations">Open locations</NavLink>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h2 class="h5">Rules</h2>
+                <p>Review operational rules, update the schedule, or deactivate noisy alerts.</p>
+                <NavLink class="btn btn-primary" href="rules">Open rules</NavLink>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h2 class="h5">Documentation</h2>
+                <p>Need the bigger picture? The implementation guide explains the full roadmap.</p>
+                <a class="btn btn-secondary" target="_blank" href="docs/ImplementationGuide.md">Read the guide</a>
+            </div>
+        </div>
+    </div>
+</div>

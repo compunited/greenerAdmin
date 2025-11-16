@@ -1,0 +1,184 @@
+@page "/locations"
+@inject GreenerConfigurator.ClientCore.Services.LocationService LocationService
+
+<PageTitle>Locations</PageTitle>
+
+<h1 class="display-6">Locations</h1>
+<p class="text-muted">Manage campuses, plants, and detailed floor information.</p>
+
+@if (_isLoading)
+{
+    <p><em>Loading locations…</em></p>
+}
+else if (_loadError is not null)
+{
+    <div class="alert alert-danger">@_loadError</div>
+}
+else
+{
+    <div class="mb-3 text-end">
+        <button class="btn btn-primary" @onclick="BeginCreate">Add location</button>
+    </div>
+
+    <div class="row gy-3">
+        @if (_locations.Count == 0)
+        {
+            <p class="text-muted">No locations have been created yet.</p>
+        }
+        else
+        {
+            @foreach (var location in _locations)
+            {
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <h2 class="h5 mb-0">@location.Name</h2>
+                                    <small class="text-muted">@location.City, @location.Country</small>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-secondary" @onclick="() => BeginEdit(location)">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger" @onclick="() => DeleteAsync(location)">Delete</button>
+                                </div>
+                            </div>
+                            <p>@location.Address</p>
+                            <ul class="list-unstyled small mb-0">
+                                @foreach (var detail in location.Details)
+                                {
+                                    <li><strong>@detail.Name</strong> – Floor @detail.FloorNumber</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}
+
+@if (_editingLocation is not null)
+{
+    <EditForm Model="_editingLocation" OnValidSubmit="SaveAsync">
+        <DataAnnotationsValidator />
+        <div class="modal d-block" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">@(_editingLocation.Id == Guid.Empty ? "Create location" : "Edit location")</h5>
+                        <button type="button" class="btn-close" aria-label="Close" @onclick="CancelEdit"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <InputText class="form-control" @bind-Value="_editingLocation.Name" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <InputText class="form-control" @bind-Value="_editingLocation.Address" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <InputText class="form-control" @bind-Value="_editingLocation.City" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Country</label>
+                            <InputText class="form-control" @bind-Value="_editingLocation.Country" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    private bool _isLoading = true;
+    private string? _loadError;
+    private List<GreenerConfigurator.ClientCore.Models.LocationModel> _locations = new();
+    private GreenerConfigurator.ClientCore.Models.LocationModel? _editingLocation;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAsync();
+    }
+
+    private async Task LoadAsync()
+    {
+        try
+        {
+            _isLoading = true;
+            _loadError = null;
+            var result = await LocationService.GetLocationsAsync();
+            _locations = result?.ToList() ?? new List<GreenerConfigurator.ClientCore.Models.LocationModel>();
+        }
+        catch (Exception ex)
+        {
+            _loadError = ex.Message;
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private void BeginCreate()
+    {
+        _editingLocation = new GreenerConfigurator.ClientCore.Models.LocationModel
+        {
+            Id = Guid.Empty,
+            Country = "Switzerland"
+        };
+    }
+
+    private void BeginEdit(GreenerConfigurator.ClientCore.Models.LocationModel location)
+    {
+        _editingLocation = new GreenerConfigurator.ClientCore.Models.LocationModel
+        {
+            Id = location.Id,
+            Name = location.Name,
+            Address = location.Address,
+            City = location.City,
+            Country = location.Country,
+            Details = location.Details.ToList()
+        };
+    }
+
+    private void CancelEdit() => _editingLocation = null;
+
+    private async Task SaveAsync()
+    {
+        if (_editingLocation is null)
+        {
+            return;
+        }
+
+        if (_editingLocation.Id == Guid.Empty)
+        {
+            await LocationService.CreateLocationAsync(_editingLocation);
+        }
+        else
+        {
+            await LocationService.UpdateLocationAsync(_editingLocation);
+        }
+
+        _editingLocation = null;
+        await LoadAsync();
+    }
+
+    private async Task DeleteAsync(GreenerConfigurator.ClientCore.Models.LocationModel location)
+    {
+        if (location.Id == Guid.Empty)
+        {
+            return;
+        }
+
+        await LocationService.DeleteLocationAsync(location.Id);
+        await LoadAsync();
+    }
+}
