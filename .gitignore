@@ -1,0 +1,9 @@
+bin/
+obj/
+*.user
+*.swp
+**/bin/
+**/obj/
+.DS_Store
+node_modules/
+.vs/

@@ -1,0 +1,21 @@
+@inherits LayoutComponentBase
+<div class="page">
+    <div class="sidebar">
+        <div class="brand p-3">
+            <strong>Greener Admin</strong>
+            <div class="small text-muted">Preview</div>
+        </div>
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <span class="text-muted">@DateTimeOffset.Now:ddd, dd MMM</span>
+            <span class="ms-auto fw-semibold">Contoso Facilities</span>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
