@@ -8,12 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.21" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.21" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GreenerConfigurator.ClientCore\GreenerConfigurator.ClientCore.csproj" />
     <ProjectReference Include="..\GreenerConfigurator.Web.Client\GreenerConfigurator.Web.Client.csproj" />
   </ItemGroup>
 
