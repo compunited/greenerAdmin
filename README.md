@@ -40,3 +40,10 @@ The server project references the client so it can serve the SPA directly (`UseB
 
 The client consumes the shared `GreenerConfigurator.ClientCore` services, making it straightforward to plug in the
 real Greener backend API endpoints as they become available.
+
+## Configuring the real API and authentication
+
+- The default API base address now targets the live endpoint at `https://api.greener.software/`. Override `Api:BaseAddress`
+  in `src/GreenerConfigurator.Web.Client/wwwroot/appsettings.json` if you need to point at another environment.
+- Azure AD B2C is wired up via MSAL. Replace the placeholders in the `AzureAdB2C` section (authority, client ID, scopes)
+  with your tenant values so the SPA can acquire tokens and authorize calls against the protected API.
