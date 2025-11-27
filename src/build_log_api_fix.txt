@@ -1,0 +1,12 @@
+  Wiederherzustellende Projekte werden ermittelt...
+  "c:\GitHub\greenerAdmin\src\GreenerConfigurator.ClientCore\GreenerConfigurator.ClientCore.csproj" wiederhergestellt (in 234 ms.).
+  "c:\GitHub\greenerAdmin\src\GreenerConfigurator.Web.Client\GreenerConfigurator.Web.Client.csproj" wiederhergestellt (in 234 ms.).
+  GreenerConfigurator.ClientCore -> c:\GitHub\greenerAdmin\src\GreenerConfigurator.ClientCore\bin\Debug\net8.0\GreenerConfigurator.ClientCore.dll
+  GreenerConfigurator.Web.Client -> c:\GitHub\greenerAdmin\src\GreenerConfigurator.Web.Client\bin\Debug\net10.0\GreenerConfigurator.Web.Client.dll
+  GreenerConfigurator.Web.Client (Blazor output) -> c:\GitHub\greenerAdmin\src\GreenerConfigurator.Web.Client\bin\Debug\net10.0\wwwroot
+
+Der Buildvorgang wurde erfolgreich ausgeführt.
+    0 Warnung(en)
+    0 Fehler
+
+Verstrichene Zeit 00:00:06.04

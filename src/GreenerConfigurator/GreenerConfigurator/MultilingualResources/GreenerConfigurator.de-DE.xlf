@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="de-DE" original="GREENERCONFIGURATOR/UTILITIES/MUI/LANGUAGE.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6916.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="GREENERCONFIGURATOR/UTILITIES/MUI/LANGUAGE.RESX" datatype="resx">
+        <trans-unit id="Dashboard" translate="yes" xml:space="preserve">
+          <source>Dashboard</source>
+          <target state="new">Dashboard</target>
+        </trans-unit>
+        <trans-unit id="Exit" translate="yes" xml:space="preserve">
+          <source>Exit</source>
+          <target state="translated">Programmende</target>
+        </trans-unit>
+        <trans-unit id="SensorManagement" translate="yes" xml:space="preserve">
+          <source>Sensor Management</source>
+          <target state="translated">SENSOREN, BRANDMELDER &amp; ZÄHLER</target>
+        </trans-unit>
+        <trans-unit id="Settings" translate="yes" xml:space="preserve">
+          <source>Settings</source>
+          <target state="translated">Einstellungen</target>
+        </trans-unit>
+        <trans-unit id="GreenerConfigurator" translate="yes" xml:space="preserve">
+          <source>Greener Configurator</source>
+          <target state="new">Greener Configurator</target>
+        </trans-unit>
+        <trans-unit id="UsernameCouldNotBeEmpty" translate="yes" xml:space="preserve">
+          <source>Username Could Not Be Empty</source>
+          <target state="translated">Benutzername darf nich leer sein</target>
+        </trans-unit>
+        <trans-unit id="NavigationCategoryManagement" translate="yes" xml:space="preserve">
+          <source>Navigation Category Management</source>
+          <target state="new">Navigation Category Management</target>
+        </trans-unit>
+        <trans-unit id="DocumentManagement" translate="yes" xml:space="preserve">
+          <source>Document Management</source>
+          <target state="new">Document Management</target>
+        </trans-unit>
+        <trans-unit id="NavigationCategory" translate="yes" xml:space="preserve">
+          <source>Navigation Category</source>
+          <target state="new">Navigation Category</target>
+        </trans-unit>
+        <trans-unit id="NavigationCategoryName" translate="yes" xml:space="preserve">
+          <source>Category Name</source>
+          <target state="new">Category Name</target>
+        </trans-unit>
+        <trans-unit id="NavigationCardList" translate="yes" xml:space="preserve">
+          <source>Navigation Card List</source>
+          <target state="new">Navigation Card List</target>
+        </trans-unit>
+        <trans-unit id="NavigationCategoryList" translate="yes" xml:space="preserve">
+          <source>Navigation Category List</source>
+          <target state="new">Navigation Category List</target>
+        </trans-unit>
+        <trans-unit id="Add" translate="yes" xml:space="preserve">
+          <source>Add</source>
+          <target state="translated">Hinzufügen</target>
+        </trans-unit>
+        <trans-unit id="Delete" translate="yes" xml:space="preserve">
+          <source>Delete</source>
+          <target state="translated">Löschen</target>
+        </trans-unit>
+        <trans-unit id="Edit" translate="yes" xml:space="preserve">
+          <source>Edit</source>
+          <target state="translated">Bearbeiten</target>
+        </trans-unit>
+        <trans-unit id="NavigationCard" translate="yes" xml:space="preserve">
+          <source>{0} Navigation Card</source>
+          <target state="new">{0} Navigation Card</target>
+        </trans-unit>
+        <trans-unit id="Save" translate="yes" xml:space="preserve">
+          <source>Save</source>
+          <target state="translated">Speichern</target>
+        </trans-unit>
+        <trans-unit id="NavigationCardCardName" translate="yes" xml:space="preserve">
+          <source>Card Name</source>
+          <target state="new">Card Name</target>
+        </trans-unit>
+        <trans-unit id="LocationName" translate="yes" xml:space="preserve">
+          <source>Location Name</source>
+          <target state="new">Location Name</target>
+        </trans-unit>
+        <trans-unit id="Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">Abbruch</target>
+        </trans-unit>
+        <trans-unit id="Name" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="new">Name</target>
+        </trans-unit>
+        <trans-unit id="Select" translate="yes" xml:space="preserve">
+          <source>Select</source>
+          <target state="new">Select</target>
+        </trans-unit>
+        <trans-unit id="CurrentUser" translate="yes" xml:space="preserve">
+          <source>Current User:</source>
+          <target state="new">Current User:</target>
+        </trans-unit>
+        <trans-unit id="LogtoutExit" translate="yes" xml:space="preserve">
+          <source>Logout/Exit</source>
+          <target state="new">Logout/Exit</target>
+        </trans-unit>
+        <trans-unit id="LogoutAndExit" translate="yes" xml:space="preserve">
+          <source>Logout And Exit</source>
+          <target state="new">Logout And Exit</target>
+        </trans-unit>
+        <trans-unit id="Rules" translate="yes" xml:space="preserve">
+          <source>Rules</source>
+          <target state="translated">Regeln</target>
+        </trans-unit>
+        <trans-unit id="AddLocationAndDetail" translate="yes" xml:space="preserve">
+          <source>Add Location/Location Detail</source>
+          <target state="new">Add Location/Location Detail</target>
+        </trans-unit>
+        <trans-unit id="DataDetailNumber" translate="yes" xml:space="preserve">
+          <source>Data Detail Number</source>
+          <target state="new">Data Detail Number</target>
+        </trans-unit>
+        <trans-unit id="GroupedNavigationCardList" translate="yes" xml:space="preserve">
+          <source>Grouped Navigation Card List</source>
+          <target state="new">Grouped Navigation Card List</target>
+        </trans-unit>
+        <trans-unit id="HideDetails" translate="yes" xml:space="preserve">
+          <source>Hide Details</source>
+          <target state="new">Hide Details</target>
+        </trans-unit>
+        <trans-unit id="LocationAndLocationDetailManagement" translate="yes" xml:space="preserve">
+          <source>Location|LocationDetail Management</source>
+          <target state="new">Location|LocationDetail Management</target>
+        </trans-unit>
+        <trans-unit id="GatewayBridgesManagement" translate="yes" xml:space="preserve">
+          <source>Gateway and Bridges Management</source>
+          <target state="new">Gateway and Bridges Management</target>
+        </trans-unit>
+        <trans-unit id="LocationDetailList" translate="yes" xml:space="preserve">
+          <source>Location Detail List</source>
+          <target state="new">Location Detail List</target>
+        </trans-unit>
+        <trans-unit id="LocationHeader" translate="yes" xml:space="preserve">
+          <source>Location</source>
+          <target state="new">Location</target>
+        </trans-unit>
+        <trans-unit id="LocationList" translate="yes" xml:space="preserve">
+          <source>Location List</source>
+          <target state="new">Location List</target>
+        </trans-unit>
+        <trans-unit id="LocationType" translate="yes" xml:space="preserve">
+          <source>Location Type</source>
+          <target state="new">Location Type</target>
+        </trans-unit>
+        <trans-unit id="LocationTypeName" translate="yes" xml:space="preserve">
+          <source>Location Type</source>
+          <target state="new">Location Type</target>
+        </trans-unit>
+        <trans-unit id="LogicalDeviceName" translate="yes" xml:space="preserve">
+          <source>Logical Device Name</source>
+          <target state="new">Logical Device Name</target>
+        </trans-unit>
+        <trans-unit id="NavigationCardAssignedSensor" translate="yes" xml:space="preserve">
+          <source>Navigation Card Assigned Sensor</source>
+          <target state="new">Navigation Card Assigned Sensor</target>
+        </trans-unit>
+        <trans-unit id="NavigationCardGroupHeader" translate="yes" xml:space="preserve">
+          <source>Card Group</source>
+          <target state="new">Card Group</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Header</note>
+        </trans-unit>
+        <trans-unit id="NavigationCardGroupList" translate="yes" xml:space="preserve">
+          <source>Navigation Card Group List</source>
+          <target state="new">Navigation Card Group List</target>
+        </trans-unit>
+        <trans-unit id="NewRule" translate="yes" xml:space="preserve">
+          <source>New Rule</source>
+          <target state="new">New Rule</target>
+        </trans-unit>
+        <trans-unit id="NotGroupedNavigationCardList" translate="yes" xml:space="preserve">
+          <source>Not Grouped Navigation Card List</source>
+          <target state="new">Not Grouped Navigation Card List</target>
+        </trans-unit>
+        <trans-unit id="ShowDetails" translate="yes" xml:space="preserve">
+          <source>Show Details</source>
+          <target state="new">Show Details</target>
+        </trans-unit>
+        <trans-unit id="UnitMeasurmentName" translate="yes" xml:space="preserve">
+          <source>Unit Measurment Name</source>
+          <target state="new">Unit Measurment Name</target>
+        </trans-unit>
+        <trans-unit id="Description" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target state="new">Description</target>
+        </trans-unit>
+        <trans-unit id="Latitude" translate="yes" xml:space="preserve">
+          <source>Latitiude</source>
+          <target state="new">Latitiude</target>
+        </trans-unit>
+        <trans-unit id="Longitude" translate="yes" xml:space="preserve">
+          <source>Longitude</source>
+          <target state="new">Longitude</target>
+        </trans-unit>
+        <trans-unit id="LocationDetailName" translate="yes" xml:space="preserve">
+          <source>LocationDetail Name</source>
+          <target state="new">LocationDetail Name</target>
+        </trans-unit>
+        <trans-unit id="LocationDetailType" translate="yes" xml:space="preserve">
+          <source>LocationDetail Type</source>
+          <target state="new">LocationDetail Type</target>
+        </trans-unit>
+        <trans-unit id="LocationDetailAddAsRoot" translate="yes" xml:space="preserve">
+          <source>Add As Root</source>
+          <target state="new">Add As Root</target>
+        </trans-unit>
+        <trans-unit id="FilterByLocation" translate="yes" xml:space="preserve">
+          <source>Filter By Location</source>
+          <target state="new">Filter By Location</target>
+        </trans-unit>
+        <trans-unit id="FilterByLocationDetail" translate="yes" xml:space="preserve">
+          <source>Filter By Location Detail</source>
+          <target state="new">Filter By Location Detail</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceList" translate="yes" xml:space="preserve">
+          <source>Network Device List</source>
+          <target state="new">Network Device List</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceManagement" translate="yes" xml:space="preserve">
+          <source>Network Device Managment</source>
+          <target state="new">Network Device Managment</target>
+        </trans-unit>
+        <trans-unit id="MoveDown" translate="yes" xml:space="preserve">
+          <source>Move Down</source>
+          <target state="new">Move Down</target>
+        </trans-unit>
+        <trans-unit id="MoveUp" translate="yes" xml:space="preserve">
+          <source>Move Up</source>
+          <target state="new">Move Up</target>
+        </trans-unit>
+        <trans-unit id="SaveNewSortChanges" translate="yes" xml:space="preserve">
+          <source>Save new sort number changes</source>
+          <target state="new">Save new sort number changes</target>
+        </trans-unit>
+        <trans-unit id="SortNumber" translate="yes" xml:space="preserve">
+          <source>Sort Number</source>
+          <target state="new">Sort Number</target>
+        </trans-unit>
+        <trans-unit id="ManageCards" translate="yes" xml:space="preserve">
+          <source>Manage Cards</source>
+          <target state="new">Manage Cards</target>
+        </trans-unit>
+        <trans-unit id="ManageCategories" translate="yes" xml:space="preserve">
+          <source>Manage Catgories</source>
+          <target state="new">Manage Catgories</target>
+        </trans-unit>
+        <trans-unit id="AssginCategory" translate="yes" xml:space="preserve">
+          <source>Assign Category</source>
+          <target state="new">Assign Category</target>
+        </trans-unit>
+        <trans-unit id="AssignedCategoriesList" translate="yes" xml:space="preserve">
+          <source>Assigned Categories List</source>
+          <target state="new">Assigned Categories List</target>
+        </trans-unit>
+        <trans-unit id="AvailableCategoriesList" translate="yes" xml:space="preserve">
+          <source>Available Categories List</source>
+          <target state="new">Available Categories List</target>
+        </trans-unit>
+        <trans-unit id="RemoveCategory" translate="yes" xml:space="preserve">
+          <source>Remove Category</source>
+          <target state="new">Remove Category</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceSubType" translate="yes" xml:space="preserve">
+          <source>Network Device SubType</source>
+          <target state="new">Network Device SubType</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceType" translate="yes" xml:space="preserve">
+          <source>Network Device Type</source>
+          <target state="new">Network Device Type</target>
+        </trans-unit>
+        <trans-unit id="FilterByBridgeDevice" translate="yes" xml:space="preserve">
+          <source>Filter By Bridge</source>
+          <target state="new">Filter By Bridge</target>
+        </trans-unit>
+        <trans-unit id="FilterByGatewayDevice" translate="yes" xml:space="preserve">
+          <source>Filter By Gateway</source>
+          <target state="new">Filter By Gateway</target>
+        </trans-unit>
+        <trans-unit id="FilterShowAll" translate="yes" xml:space="preserve">
+          <source>Show All</source>
+          <target state="new">Show All</target>
+        </trans-unit>
+        <trans-unit id="Info" translate="yes" xml:space="preserve">
+          <source>Information</source>
+          <target state="new">Information</target>
+        </trans-unit>
+        <trans-unit id="NetwordDeviceSimcardList" translate="yes" xml:space="preserve">
+          <source>Simcard List</source>
+          <target state="new">Simcard List</target>
+        </trans-unit>
+        <trans-unit id="NetworkDevice" translate="yes" xml:space="preserve">
+          <source>{0} Network Device</source>
+          <target state="new">{0} Network Device</target>
+        </trans-unit>
+        <trans-unit id="IccId" translate="yes" xml:space="preserve">
+          <source>IccId</source>
+          <target state="new">IccId</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceName" translate="yes" xml:space="preserve">
+          <source>Network Device Name</source>
+          <target state="new">Network Device Name</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceUsageInformation" translate="yes" xml:space="preserve">
+          <source>Network Device Usage Information</source>
+          <target state="new">Network Device Usage Information</target>
+        </trans-unit>
+        <trans-unit id="AddWithNoLocation" translate="yes" xml:space="preserve">
+          <source>Add Without Location Information</source>
+          <target state="new">Add Without Location Information</target>
+        </trans-unit>
+        <trans-unit id="FilterByNoLocation" translate="yes" xml:space="preserve">
+          <source>Filter By NoLocation Data</source>
+          <target state="new">Filter By NoLocation Data</target>
+        </trans-unit>
+        <trans-unit id="ProviderName" translate="yes" xml:space="preserve">
+          <source>Provider Name</source>
+          <target state="new">Provider Name</target>
+        </trans-unit>
+        <trans-unit id="State" translate="yes" xml:space="preserve">
+          <source>State</source>
+          <target state="new">State</target>
+        </trans-unit>
+        <trans-unit id="DevicePassword" translate="yes" xml:space="preserve">
+          <source>Device Password</source>
+          <target state="new">Device Password</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceIdentifier" translate="yes" xml:space="preserve">
+          <source>Device Identifier</source>
+          <target state="new">Device Identifier</target>
+        </trans-unit>
+        <trans-unit id="NetworkDeviceInformation" translate="yes" xml:space="preserve">
+          <source>Network Device Information</source>
+          <target state="new">Network Device Information</target>
+        </trans-unit>
+        <trans-unit id="IP" translate="yes" xml:space="preserve">
+          <source>IP</source>
+          <target state="new">IP</target>
+        </trans-unit>
+        <trans-unit id="SimCardNumber" translate="yes" xml:space="preserve">
+          <source>Sim Card Number</source>
+          <target state="new">Sim Card Number</target>
+        </trans-unit>
+        <trans-unit id="SimCardProvider" translate="yes" xml:space="preserve">
+          <source>Sim Card Provider</source>
+          <target state="new">Sim Card Provider</target>
+        </trans-unit>
+        <trans-unit id="IccdIdIsNotValid" translate="yes" xml:space="preserve">
+          <source>IccdId is not valid</source>
+          <target state="new">IccdId is not valid</target>
+        </trans-unit>
+        <trans-unit id="SimCardNumberIsNotValid" translate="yes" xml:space="preserve">
+          <source>Sim card number is not valid</source>
+          <target state="new">Sim card number is not valid</target>
+        </trans-unit>
+        <trans-unit id="SimCardProviderIsNotValid" translate="yes" xml:space="preserve">
+          <source>Sim card provider is not valid</source>
+          <target state="new">Sim card provider is not valid</target>
+        </trans-unit>
+        <trans-unit id="ValidTo" translate="yes" xml:space="preserve">
+          <source>Valid To</source>
+          <target state="new">Valid To</target>
+        </trans-unit>
+        <trans-unit id="BusConnection" translate="yes" xml:space="preserve">
+          <source>Bus Connection</source>
+          <target state="new">Bus Connection</target>
+        </trans-unit>
+        <trans-unit id="Address" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <target state="new">Address</target>
+        </trans-unit>
+        <trans-unit id="BusConnectionInterfaceType" translate="yes" xml:space="preserve">
+          <source>Bus Connection Interface Type</source>
+          <target state="new">Bus Connection Interface Type</target>
+        </trans-unit>
+        <trans-unit id="Password" translate="yes" xml:space="preserve">
+          <source>Password</source>
+          <target state="new">Password</target>
+        </trans-unit>
+        <trans-unit id="Port" translate="yes" xml:space="preserve">
+          <source>Port</source>
+          <target state="new">Port</target>
+        </trans-unit>
+        <trans-unit id="Username" translate="yes" xml:space="preserve">
+          <source>Username</source>
+          <target state="new">Username</target>
+        </trans-unit>
+        <trans-unit id="UseSSL" translate="yes" xml:space="preserve">
+          <source>Use SSL</source>
+          <target state="new">Use SSL</target>
+        </trans-unit>
+        <trans-unit id="BusConnectionList" translate="yes" xml:space="preserve">
+          <source>Bus Connection List</source>
+          <target state="new">Bus Connection List</target>
+        </trans-unit>
+        <trans-unit id="SelectBusConnectionType" translate="yes" xml:space="preserve">
+          <source>Select Bus Connection Type</source>
+          <target state="new">Select Bus Connection Type</target>
+        </trans-unit>
+        <trans-unit id="LteBusConnection" translate="yes" xml:space="preserve">
+          <source>LTE Bus Connection</source>
+          <target state="new">LTE Bus Connection</target>
+        </trans-unit>
+        <trans-unit id="MqttBusConnection" translate="yes" xml:space="preserve">
+          <source>MQTT Bus Connection</source>
+          <target state="new">MQTT Bus Connection</target>
+        </trans-unit>
+        <trans-unit id="LoraWanBusConnection" translate="yes" xml:space="preserve">
+          <source>LoraWan Bus Connection</source>
+          <target state="new">LoraWan Bus Connection</target>
+        </trans-unit>
+        <trans-unit id="RuleManagement" translate="yes" xml:space="preserve">
+          <source>Rule Management</source>
+          <target state="new">Rule Management</target>
+        </trans-unit>
+        <trans-unit id="Activate" translate="yes" xml:space="preserve">
+          <source>Activate</source>
+          <target state="new">Activate</target>
+        </trans-unit>
+        <trans-unit id="EndDate" translate="yes" xml:space="preserve">
+          <source>End Date</source>
+          <target state="new">End Date</target>
+        </trans-unit>
+        <trans-unit id="StartDate" translate="yes" xml:space="preserve">
+          <source>Start Date</source>
+          <target state="new">Start Date</target>
+        </trans-unit>
+        <trans-unit id="Rule" translate="yes" xml:space="preserve">
+          <source>Rule</source>
+          <target state="new">Rule</target>
+        </trans-unit>
+        <trans-unit id="RuleInformation" translate="yes" xml:space="preserve">
+          <source>Rule Information</source>
+          <target state="new">Rule Information</target>
+        </trans-unit>
+        <trans-unit id="RuleDetailList" translate="yes" xml:space="preserve">
+          <source>Rule Detail List</source>
+          <target state="new">Rule Detail List</target>
+        </trans-unit>
+        <trans-unit id="AddDeviceInfo" translate="yes" xml:space="preserve">
+          <source>Add Device Info</source>
+          <target state="new">Add Device Info</target>
+        </trans-unit>
+        <trans-unit id="MessageText" translate="yes" xml:space="preserve">
+          <source>Message Text</source>
+          <target state="new">Message Text</target>
+        </trans-unit>
+        <trans-unit id="RuleDetail" translate="yes" xml:space="preserve">
+          <source>Rule Detail</source>
+          <target state="new">Rule Detail</target>
+        </trans-unit>
+        <trans-unit id="PauseRule" translate="yes" xml:space="preserve">
+          <source>Pause Rule</source>
+          <target state="new">Pause Rule</target>
+        </trans-unit>
+        <trans-unit id="PauseRuleUntill" translate="yes" xml:space="preserve">
+          <source>Pause Untill</source>
+          <target state="new">Pause Untill</target>
+        </trans-unit>
+        <trans-unit id="PauseUntilCouldNotBeAsNow" translate="yes" xml:space="preserve">
+          <source>Pause until should be bigger than current time</source>
+          <target state="new">Pause until should be bigger than current time</target>
+        </trans-unit>
+        <trans-unit id="PauseUntilCouldNotBeNull" translate="yes" xml:space="preserve">
+          <source>Need to Set date for Pause Until</source>
+          <target state="new">Need to Set date for Pause Until</target>
+        </trans-unit>
+        <trans-unit id="RuleMessageCouldNotBeEmpty" translate="yes" xml:space="preserve">
+          <source>Rule Message text could not be empty</source>
+          <target state="new">Rule Message text could not be empty</target>
+        </trans-unit>
+        <trans-unit id="RuleNameCouldNotBeEmpty" translate="yes" xml:space="preserve">
+          <source>Rule name could not be empty</source>
+          <target state="new">Rule name could not be empty</target>
+        </trans-unit>
+        <trans-unit id="Time" translate="yes" xml:space="preserve">
+          <source>Time</source>
+          <target state="new">Time</target>
+        </trans-unit>
+        <trans-unit id="ActiveTimeList" translate="yes" xml:space="preserve">
+          <source>Active Time List</source>
+          <target state="new">Active Time List</target>
+        </trans-unit>
+        <trans-unit id="AlarmLevel" translate="yes" xml:space="preserve">
+          <source>Alarm Level</source>
+          <target state="new">Alarm Level</target>
+        </trans-unit>
+        <trans-unit id="DeviceName" translate="yes" xml:space="preserve">
+          <source>Device Name</source>
+          <target state="new">Device Name</target>
+        </trans-unit>
+        <trans-unit id="FirstCompareConditionList" translate="yes" xml:space="preserve">
+          <source>First Compare Condition List</source>
+          <target state="new">First Compare Condition List</target>
+        </trans-unit>
+        <trans-unit id="SecondCompareConditionList" translate="yes" xml:space="preserve">
+          <source>Second Compare Condition List</source>
+          <target state="new">Second Compare Condition List</target>
+        </trans-unit>
+        <trans-unit id="CompareOperatorType" translate="yes" xml:space="preserve">
+          <source>Compare Operator Type</source>
+          <target state="new">Compare Operator Type</target>
+        </trans-unit>
+        <trans-unit id="ActiveTime" translate="yes" xml:space="preserve">
+          <source>Active Time</source>
+          <target state="new">Active Time</target>
+        </trans-unit>
+        <trans-unit id="DaysOfTheWeek" translate="yes" xml:space="preserve">
+          <source>Days Of The Week</source>
+          <target state="new">Days Of The Week</target>
+        </trans-unit>
+        <trans-unit id="FromDate" translate="yes" xml:space="preserve">
+          <source>From Date</source>
+          <target state="new">From Date</target>
+        </trans-unit>
+        <trans-unit id="FromDateEveryYear" translate="yes" xml:space="preserve">
+          <source>From Date Every Year</source>
+          <target state="new">From Date Every Year</target>
+        </trans-unit>
+        <trans-unit id="FromTime" translate="yes" xml:space="preserve">
+          <source>From Time</source>
+          <target state="new">From Time</target>
+        </trans-unit>
+        <trans-unit id="ToDate" translate="yes" xml:space="preserve">
+          <source>To Date</source>
+          <target state="new">To Date</target>
+        </trans-unit>
+        <trans-unit id="ToDateEveryYear" translate="yes" xml:space="preserve">
+          <source>To Date Every Year</source>
+          <target state="new">To Date Every Year</target>
+        </trans-unit>
+        <trans-unit id="ToTime" translate="yes" xml:space="preserve">
+          <source>To Time</source>
+          <target state="new">To Time</target>
+        </trans-unit>
+        <trans-unit id="AllDays" translate="yes" xml:space="preserve">
+          <source>All Days</source>
+          <target state="new">All Days</target>
+        </trans-unit>
+        <trans-unit id="Friday" translate="yes" xml:space="preserve">
+          <source>Friday</source>
+          <target state="new">Friday</target>
+        </trans-unit>
+        <trans-unit id="Monday" translate="yes" xml:space="preserve">
+          <source>Monday</source>
+          <target state="new">Monday</target>
+        </trans-unit>
+        <trans-unit id="Saturday" translate="yes" xml:space="preserve">
+          <source>Saturday</source>
+          <target state="new">Saturday</target>
+        </trans-unit>
+        <trans-unit id="Sunday" translate="yes" xml:space="preserve">
+          <source>Sunday</source>
+          <target state="new">Sunday</target>
+        </trans-unit>
+        <trans-unit id="Thursday" translate="yes" xml:space="preserve">
+          <source>Thursday</source>
+          <target state="new">Thursday</target>
+        </trans-unit>
+        <trans-unit id="Tuesday" translate="yes" xml:space="preserve">
+          <source>Tuesday</source>
+          <target state="new">Tuesday</target>
+        </trans-unit>
+        <trans-unit id="Wednesday" translate="yes" xml:space="preserve">
+          <source>Wednesday</source>
+          <target state="new">Wednesday</target>
+        </trans-unit>
+        <trans-unit id="CompareCondition" translate="yes" xml:space="preserve">
+          <source>Compare Condition</source>
+          <target state="new">Compare Condition</target>
+        </trans-unit>
+        <trans-unit id="First" translate="yes" xml:space="preserve">
+          <source>First</source>
+          <target state="new">First</target>
+        </trans-unit>
+        <trans-unit id="Second" translate="yes" xml:space="preserve">
+          <source>Second</source>
+          <target state="new">Second</target>
+        </trans-unit>
+        <trans-unit id="Value" translate="yes" xml:space="preserve">
+          <source>Value</source>
+          <target state="new">Value</target>
+        </trans-unit>
+        <trans-unit id="ApplyFilter" translate="yes" xml:space="preserve">
+          <source>Apply Filter</source>
+          <target state="new">Apply Filter</target>
+        </trans-unit>
+        <trans-unit id="ResetFilter" translate="yes" xml:space="preserve">
+          <source>Reset Filter</source>
+          <target state="new">Reset Filter</target>
+        </trans-unit>
+        <trans-unit id="SelectDevice" translate="yes" xml:space="preserve">
+          <source>Select Device</source>
+          <target state="new">Select Device</target>
+        </trans-unit>
+        <trans-unit id="NotificationGroupData" translate="yes" xml:space="preserve">
+          <source>Notification Group Data</source>
+          <target state="new">Notification Group Data</target>
+        </trans-unit>
+        <trans-unit id="NotificationGroupDataList" translate="yes" xml:space="preserve">
+          <source>Notification Group Data List</source>
+          <target state="new">Notification Group Data List</target>
+        </trans-unit>
+        <trans-unit id="AlertNotification" translate="yes" xml:space="preserve">
+          <source>Alert Notification</source>
+          <target state="new">Alert Notification</target>
+        </trans-unit>
+        <trans-unit id="InfoNotification" translate="yes" xml:space="preserve">
+          <source>Info Notification</source>
+          <target state="new">Info Notification</target>
+        </trans-unit>
+        <trans-unit id="WarningNotification" translate="yes" xml:space="preserve">
+          <source>Warning Notification</source>
+          <target state="new">Warning Notification</target>
+        </trans-unit>
+        <trans-unit id="NotificationGroup" translate="yes" xml:space="preserve">
+          <source>Noyification Group</source>
+          <target state="new">Noyification Group</target>
+        </trans-unit>
+        <trans-unit id="ConfigureManually" translate="yes" xml:space="preserve">
+          <source>Configure manually</source>
+          <target state="new">Configure manually</target>
+        </trans-unit>
+        <trans-unit id="ImportSensors" translate="yes" xml:space="preserve">
+          <source>Import sensors</source>
+          <target state="new">Import sensors</target>
+        </trans-unit>
+        <trans-unit id="Bus/NetworkType" translate="yes" xml:space="preserve">
+          <source>Bus/Network Type</source>
+          <target state="new">Bus/Network Type</target>
+        </trans-unit>
+        <trans-unit id="FileName" translate="yes" xml:space="preserve">
+          <source>File Name</source>
+          <target state="new">File Name</target>
+        </trans-unit>
+        <trans-unit id="Import" translate="yes" xml:space="preserve">
+          <source>Import</source>
+          <target state="new">Import</target>
+        </trans-unit>
+        <trans-unit id="Manufacturer" translate="yes" xml:space="preserve">
+          <source>Manufacturer</source>
+          <target state="new">Manufacturer</target>
+        </trans-unit>
+        <trans-unit id="Model" translate="yes" xml:space="preserve">
+          <source>Model</source>
+          <target state="new">Model</target>
+        </trans-unit>
+        <trans-unit id="SelectFile" translate="yes" xml:space="preserve">
+          <source>Select File</source>
+          <target state="new">Select File</target>
+        </trans-unit>
+        <trans-unit id="ConfigureGateway" translate="yes" xml:space="preserve">
+          <source>Configure Gateway</source>
+          <target state="new">Configure Gateway</target>
+        </trans-unit>
+        <trans-unit id="ConnectionView" translate="yes" xml:space="preserve">
+          <source>Connection View</source>
+          <target state="new">Connection View</target>
+        </trans-unit>
+        <trans-unit id="GatewayConnection" translate="yes" xml:space="preserve">
+          <source>GatewayConnection</source>
+          <target state="new">GatewayConnection</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+  <file datatype="xml" source-language="en-US" target-language="de-DE" original="GREENERCONFIGURATOR/PROPERTIES/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="0.0.0.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="GREENERCONFIGURATOR/PROPERTIES/RESOURCES.RESX" datatype="resx" />
+    </body>
+  </file>
+</xliff>

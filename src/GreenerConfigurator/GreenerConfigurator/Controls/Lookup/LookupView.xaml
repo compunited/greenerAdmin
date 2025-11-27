@@ -1,0 +1,44 @@
+<UserControl x:Class="GreenerConfigurator.Controls.Lookup.LookupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension ="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             mc:Ignorable="d" >
+
+    <StackPanel x:Name="stpMain" Visibility="{Binding LookupVisibility}" Margin="5,0,0,0">
+        <StackPanel Margin="10,0,0,0" Orientation="Horizontal" Height="50">
+            <TextBox x:Name="txtSearch" Text="{Binding SearchText, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                     Width="350" MaxLength="100" Style="{StaticResource txtMain}" />
+            <Button x:Name="btnClearSearch" Command="{Binding OnClearSearchText}" Content="X" Style="{StaticResource btnLookup}" />
+        </StackPanel>
+
+        <StackPanel Margin="15,0,15,0" >
+            <ListView  ItemsSource="{Binding LookupDataList}" MaxHeight="600" 
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"                       
+                       SelectionChanged="SelectItemClick" HorizontalAlignment="Left"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedLookupData}"  
+                          extension:GridViewSort.Command="{Binding OnSortDataCommand}" Width="350" >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" BasedOn="{StaticResource MainListViewItem}">
+                        <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Path=DataContext.OnEditPaintCommand}" />
+                        <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView AllowsColumnReorder="false" >
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" 
+                                            extension:GridViewSort.PropertyName="Name"
+                                            Header="{x:Static mui:Language.Name}" Width="350" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" 
+                    Grid.Column="0" HorizontalAlignment="Left" Command="{Binding OnCancelCommand}"  Width="350" Content="{x:Static mui:Language.Cancel}" Margin="0,15,0,15" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

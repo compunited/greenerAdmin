@@ -1,0 +1,7 @@
+  Wiederherzustellende Projekte werden ermittelt...
+C:\GitHub\greenerAdmin\src\GreenerConfigurator\GreenerConfigurator\GreenerConfigurator.csproj : warning NU1603: GreenerConfigurator hängt von Greener.Web.Definitions (>= 1.0.0.7726) ab, aber Greener.Web.Definitions 1.0.0.7726 wurde nicht gefunden. Greener.Web.Definitions 1.0.0.8051 wurde stattdessen aufgelöst.
+C:\GitHub\greenerAdmin\src\GreenerConfigurator\GreenerConfigurator\GreenerConfigurator.csproj : error NU1605: Warnung als Fehler: Ein Downgrade des Pakets "Microsoft.Extensions.Http" von 8.0.1 auf 8.0.0 wurde festgestellt. Verweisen Sie direkt aus dem Projekt auf das Paket, um eine andere Version auszuwählen. 
+C:\GitHub\greenerAdmin\src\GreenerConfigurator\GreenerConfigurator\GreenerConfigurator.csproj : error NU1605:  GreenerConfigurator -> GreenerConfigurator.ClientCore -> Microsoft.Extensions.Http (>= 8.0.1) 
+C:\GitHub\greenerAdmin\src\GreenerConfigurator\GreenerConfigurator\GreenerConfigurator.csproj : error NU1605:  GreenerConfigurator -> Microsoft.Extensions.Http (>= 8.0.0)
+  Fehler beim Wiederherstellen von "C:\GitHub\greenerAdmin\src\GreenerConfigurator\GreenerConfigurator\GreenerConfigurator.csproj" (in 29,45 Sek.).
+  1 von 2 Projekten sind für die Wiederherstellung auf dem neuesten Stand.

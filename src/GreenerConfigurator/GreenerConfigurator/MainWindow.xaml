@@ -1,0 +1,42 @@
+<Window x:Class="GreenerConfigurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:GreenerConfigurator.Controls"
+        xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+        mc:Ignorable="d"
+        Title="" Height="450" Width="800" WindowStartupLocation="CenterScreen"  Background="{StaticResource BrushPrimaryDarkColor}"
+        Loaded="Window_Loaded" WindowState="Maximized"  ResizeMode="CanMinimize" WindowStyle="None">
+    <Grid x:Name="grdMain" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <controls:SideBarNavigation Grid.Column="0" DataContext="{Binding Navigator}" IsEnabled="{Binding IsEnable}" />
+        <Grid x:Name="grdMiddle" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <!--// Content-->
+            <ContentControl x:Name="ccMain" Grid.Row="0"  Content="{Binding Navigator.CurrentViewModel}" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+            <!--FOOTER-->
+            <Grid x:Name="grdFooter" Grid.Row="1" Background="{StaticResource BrushPrimaryDarkColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblCurrentUserHeader" Grid.Column="0" 
+                       Style="{StaticResource lblFooter}" Visibility="{Binding IsVisible}"
+                       Content="{x:Static mui:Language.CurrentUser}"/>
+                <Label x:Name="lblCurrentUser" Grid.Column="1" Style="{StaticResource lblFooter}" 
+                       Content="{Binding CurrentUserFullName}"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

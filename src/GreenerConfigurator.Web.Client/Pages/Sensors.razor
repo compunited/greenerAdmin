@@ -1,0 +1,85 @@
+@page "/sensors"
+@using GreenerConfigurator.ClientCore.Services
+@using GreenerConfigurator.ClientCore.Models
+@using Microsoft.AspNetCore.Authorization
+@inject PhysicalDeviceService PhysicalDeviceService
+
+<PageTitle>Sensors | Greener Configurator</PageTitle>
+
+<div class="page-header">
+    <h1>Sensors</h1>
+    <button class="btn btn-primary">
+        <span class="bi bi-plus-lg"></span> Add Sensor
+    </button>
+</div>
+
+@if (sensors == null)
+{
+    <div class="loading-state">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading sensors...</p>
+    </div>
+}
+else
+{
+    <div class="empty-state">
+        <div class="empty-icon">
+            <span class="bi bi-cpu"></span>
+        </div>
+        <h3>Sensors</h3>
+        <p>Sensor list is currently unavailable.</p>
+        <button class="btn btn-primary mt-3">Add Sensor</button>
+    </div>
+}
+
+@code {
+    private IEnumerable<PhysicalDeviceModel>? sensors;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        try 
+        {
+            // sensors = await PhysicalDeviceService.GetPhysicalDevicesAsync();
+            // Service method not available yet.
+            sensors = new List<PhysicalDeviceModel>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading sensors: {ex.Message}");
+            sensors = new List<PhysicalDeviceModel>();
+        }
+    }
+}
+
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .loading-state, .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid var(--greener-border);
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        color: var(--greener-text-muted);
+        margin-bottom: 1rem;
+    }
+    
+    .card {
+        border: 1px solid var(--greener-border);
+        box-shadow: var(--shadow-sm);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+</style>

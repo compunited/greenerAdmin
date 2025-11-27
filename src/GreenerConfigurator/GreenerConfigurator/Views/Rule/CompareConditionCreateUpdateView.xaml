@@ -1,0 +1,193 @@
+<UserControl x:Class="GreenerConfigurator.Views.Rule.CompareConditionCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.Rule"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             xmlns:controls="clr-namespace:GreenerConfigurator.Controls"
+             xmlns:enumerations ="clr-namespace:Greener.Web.Definitions.Enums;assembly=Greener.Web.Definitions.Enums"    
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d">
+    <StackPanel VerticalAlignment="Stretch">
+
+        <StackPanel Style="{StaticResource stpHeader}" FlowDirection="LeftToRight" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderPageStatusName" Style="{StaticResource lblHeader}" Content="{Binding PageStatus}"
+                    ContentStringFormat="{x:Static mui:Language.ActiveTime}"/>
+            <Label  Style="{StaticResource lblHeader}" Content="{Binding ExteraHeaderText}"/>
+            <Label x:Name="lblHeaderNotificationGroupData" Style="{StaticResource lblHeader}" Content="{x:Static mui:Language.NotificationGroupData}"/>
+        </StackPanel>
+
+        <Grid x:Name="grdDataEntryMain" Margin="15,5,5,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="grdCompareCondition" Margin="5,5,0,0" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label  Content="{x:Static mui:Language.CompareOperatorType}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                <ComboBox Name="cmbAlarmLevel" Grid.Column="1" Grid.Row="0" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding CompareConditionEdit.CompareOperatorType}" 
+                               ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type enumerations:CompareOperatorType }}}"/>
+
+                <Label Content="{x:Static mui:Language.Value}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                <TextBox x:Name="txtName" Grid.Column="1" Grid.Row="1" Text="{Binding CompareConditionEdit.Value,ValidatesOnDataErrors=True}" 
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" />
+
+
+                <Label Content="{x:Static mui:Language.DeviceName}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" Orientation="Horizontal">
+                    <TextBox x:Name="txtLocationName" Text="{Binding CompareConditionEdit.DeviceName, ValidatesOnDataErrors=True}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+                    <Button x:Name="btnLocationLookup" Style="{StaticResource btnLookup}" Content="..." 
+                                Command="{Binding OnDeviceLookupCommand}" IsEnabled="{Binding IsEditMode}"/>
+                </StackPanel>
+                <Label Content="{x:Static mui:Language.DataDetailNumber}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding CompareConditionEdit.DataDetailNumber}" 
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+
+                <Grid x:Name="grdFooter" Grid.Column="1" Grid.Row="6" Margin="0,0,15,0"   >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnOk" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnOKCommand}" Content="{Binding ButtonOkText}" />
+                    <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelCommand}" Content="{x:Static mui:Language.Cancel}" />
+                </Grid>
+
+                <errorbox:ErrorBoxView x:Name="errBox" Grid.Row="7" Grid.Column="1" DataContext="{Binding RuleDetail}"  />
+            </Grid>
+
+            <!--#region Lookup -->
+
+            <StackPanel x:Name="stpLookup" Margin="20,0,20,0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" Visibility="{Binding LookupDeviceVisibility}" >
+
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderFirstCompareCondition" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.SelectDevice}"/>
+                </StackPanel>
+                <!--#region Filtering Physical device -->
+
+                <Grid VerticalAlignment="Top" Margin="0,5,0,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TreeView x:Name="trvLoationDetail" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent"
+                            IsEnabled="{Binding IsLocationDetailListEnable}"
+                            VirtualizingStackPanel.IsVirtualizing="True"   ItemsSource="{Binding LocationDetailTreeList}"
+                            VirtualizingStackPanel.VirtualizationMode="Recycling"
+                            Width="400" SelectedItemChanged="trvLoationDetail_SelectedItemChanged" Height="350" MaxHeight="350" />
+
+                    <Grid Grid.Row="0" Grid.Column="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="btnResetFilter" Grid.Column="1" Grid.Row="0" Style="{StaticResource btnPrimaryCancel}" 
+                                Command="{Binding OnResetFilterCommand}" 
+                                Content="{x:Static mui:Language.ResetFilter}" />
+                        <!--<Button x:Name="btnApplyFilter" Grid.Column="1" Grid.Row="0" Style="{StaticResource btnPrimary}" 
+                                Command="{Binding OnApplyFilterCommand}" 
+                                 Content="{x:Static mui:Language.ApplyFilter}" />-->
+
+                        <Label  Content="{x:Static mui:Language.UnitMeasurmentName}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                        <ComboBox  Grid.Column="1" Grid.Row="1" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding SelectedUnitMeasurment}" 
+                               ItemsSource="{Binding UnitMeasurmentItemList}" DisplayMemberPath="Name" SelectedValuePath="EnumItem"/>
+
+                    </Grid>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Physical Device List  -->
+
+                <ListView x:Name="LogicalDeviceList"  ItemsSource="{Binding DeviceList}" MaxHeight="500" Margin="0,5,0,0"
+                                  HorizontalContentAlignment="Stretch" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  SelectionMode="Single" SelectedItem="{Binding SelectedDeviceNavigationLookup}" >
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                            <!--<Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnEditPaintCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                    <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>-->
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="false" >
+                            <GridViewColumn DisplayMemberBinding="{Binding LogicalDeviceName}" 
+                                            Header="{x:Static mui:Language.LogicalDeviceName}" Width="350" />
+                            <GridViewColumn DisplayMemberBinding="{Binding DataDetailNumber}" 
+                                            Header="{x:Static mui:Language.DataDetailNumber}" Width="100" />
+                            <GridViewColumn DisplayMemberBinding="{Binding UnitOfMeasurementName}" 
+                                            Header="{x:Static mui:Language.UnitMeasurmentName}" Width="150" />
+                            <GridViewColumn DisplayMemberBinding="{Binding LocationDetailName}" 
+                                            Header="{x:Static mui:Language.LocationDetailName}" Width="150" />
+                        </GridView>
+                    </ListView.View>
+
+                </ListView>
+
+                <Grid x:Name="grdLookupDeviceFooter" Margin="0,0,0,0"   >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnCancelLookupDevice" Grid.Column="0" Style="{StaticResource btnPrimaryCancel}" 
+                                Command="{Binding OnCancelLookupDeviceCommand}" 
+                                Content="{x:Static mui:Language.Cancel}" />
+                    <Button x:Name="btnAddLookupDevice" Grid.Column="1" Style="{StaticResource btnPrimary}" 
+                                Command="{Binding OnSelectLookupDeviceCommand}" 
+                                 Content="{x:Static mui:Language.Select}" />
+                </Grid>
+
+                <!--#endregion-->
+
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+        </Grid>
+
+    </StackPanel>
+
+</UserControl>

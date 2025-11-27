@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
+    <MultilingualFallbackLanguage>en-US</MultilingualFallbackLanguage>
+    <TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
+    <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
+    <SuppressPseudoWarning Condition="'$(Configuration)'=='DEV_PC'">true</SuppressPseudoWarning>
+    <Configurations>Debug;Release;DEV_PC</Configurations>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <StartupObject>GreenerConfigurator.App</StartupObject>
+    <AnalysisLevel>none</AnalysisLevel>
+    <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    <SupportedOSPlatformVersion>10.0.26100.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEV_PC|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.ResxResources.targets')" />
+  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
+    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
+  </Target>
+  <ItemGroup>
+    <EmbeddedResource Remove="Properties\Resources.de-DE.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Icons\add-icon.png" />
+    <None Remove="Assets\Icons\add.png" />
+    <None Remove="Assets\Icons\calendar.png" />
+    <None Remove="Assets\Icons\change-icon.png" />
+    <None Remove="Assets\Icons\dark-green-arrow-down-icon.png" />
+    <None Remove="Assets\Icons\dark-green-arrow-up-icon.png" />
+    <None Remove="Assets\Icons\dark-green-up-arrow-icon.png" />
+    <None Remove="Assets\Icons\delete-icon.png" />
+    <None Remove="Assets\Icons\DocumentCards.png" />
+    <None Remove="Assets\Icons\Documents.png" />
+    <None Remove="Assets\Icons\double-left-arrows-symbol.png" />
+    <None Remove="Assets\Icons\double-right-arrows-symbol.png" />
+    <None Remove="Assets\Icons\edit-icon.png" />
+    <None Remove="Assets\Icons\export-excel-icon.png" />
+    <None Remove="Assets\Icons\Gateway.png" />
+    <None Remove="Assets\Icons\info-icon.png" />
+    <None Remove="Assets\Icons\NewLocation.png" />
+    <None Remove="Assets\Icons\PlaceElement.png" />
+    <None Remove="Assets\Icons\save-changes-icon.png" />
+    <None Remove="Assets\Icons\sensor-bw-1-icon.png" />
+    <None Remove="Assets\Icons\sensor-color-1-icon.png" />
+    <None Remove="Assets\Icons\sensor-color-2-icon.png" />
+    <None Remove="Assets\Icons\sensor.svg" />
+    <None Remove="Assets\Icons\Sensors.png" />
+    <None Remove="Assets\Icons\setting-icon.png" />
+    <None Remove="Assets\Icons\Settings.png" />
+    <None Remove="Assets\Icons\SettingsHead.png" />
+    <None Remove="Assets\Icons\shutdown-icon.png" />
+    <None Remove="Assets\images.jpg" />
+    <None Remove="Images\Gateway.svg" />
+    <None Remove="Images\greener-Logo-pos.svg" />
+    <None Remove="Images\newLocation.svg" />
+    <None Remove="Images\Sensors.svg" />
+    <None Remove="Images\settings.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icons\add-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\calendar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\change-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\dark-green-arrow-up-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\dark-green-arrow-down-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\delete-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\DocumentCards.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\Documents.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\double-left-arrows-symbol.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\double-right-arrows-symbol.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\edit-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\PlaceElement.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\export-excel-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\Gateway.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\info-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\save-changes-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\Settings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\SettingsHead.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\shutdown-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="DotNetProjects.SVGImage" Version="5.2.2" />
+    <PackageReference Include="Greener.DataModels" Version="1.0.0.7677" />
+    <PackageReference Include="Greener.Web.Definitions" Version="1.0.0.8051" />
+    <PackageReference Include="greener.web.definitions.enums" Version="1.0.0.7490" />
+    <PackageReference Include="IronXL.Excel" Version="2024.10.2" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.66.1" />
+    <PackageReference Include="Microsoft.Identity.Client.Desktop" Version="4.66.1" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2849.39" />
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.2" />
+    <PackageReference Include="System.Data.OleDb" Version="9.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\GreenerConfigurator.ClientCore\GreenerConfigurator.ClientCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Icons\NewLocation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Icons\Sensors.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\Gateway.svg" />
+    <Resource Include="Images\greener-Logo-pos.svg" />
+    <Resource Include="Images\newLocation.svg" />
+    <Resource Include="Images\Sensors.svg" />
+    <Resource Include="Images\settings.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Utilities\MUI\Language.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Utilities\MUI\Language.de-DE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Utilities\MUI\Language.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

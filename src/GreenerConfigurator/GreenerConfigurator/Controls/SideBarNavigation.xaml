@@ -1,0 +1,147 @@
+<UserControl x:Class="GreenerConfigurator.Controls.SideBarNavigation"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:nav="clr-namespace:GreenerConfigurator.ClientCore.Utilities.Enumerations;assembly=GreenerConfigurator.ClientCore"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore" 
+             mc:Ignorable="d" d:DesignWidth="122.345" >
+
+
+    <Grid x:Name="grdNavigation" Background="{StaticResource BrushPrimaryGreenColor}" 
+          HorizontalAlignment="Center" Width="125" Visibility="{Binding Isvisible}" IsEnabled="{Binding IsEnable}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Style="{StaticResource MenuButtonStyle}"
+                 Command="{Binding UpdateCurrentViewModelICommand}" CommandParameter="{x:Static nav:ViewModelType.Location}">
+            <StackPanel>
+                <Image Source="/Assets/Icons/NewLocation.png" Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto" />
+                <d:Label Content="{x:Static mui:Language.LocationAndLocationDetailManagement}" 
+                         Background="Transparent" Foreground="White" Width="Auto" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttLocation" Content="{x:Static mui:Language.LocationAndLocationDetailManagement}" Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+        <Button Grid.Row="1" Style="{StaticResource MenuButtonStyle}" Click="OpenMenu">
+            <StackPanel >
+                <Image Source="/Assets/Icons/Sensors.png"  Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto">
+                    <Image.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{x:Static mui:Language.ImportSensors}" Click="ImportSensors_OnClick" />
+                            <MenuItem Header="{x:Static mui:Language.ConfigureManually}" Click="ConfigureManyally_OnClick" />
+                        </ContextMenu>
+                    </Image.ContextMenu>
+                </Image>
+                <d:Label Content="{x:Static mui:Language.SensorManagement}" 
+                         Background="Transparent" Foreground="White" Width="Auto" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttSensort" Content="{x:Static mui:Language.SensorManagement}" Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+
+       
+        <Button Grid.Row="2"  Style="{StaticResource MenuButtonStyle}"
+                Command="{Binding UpdateCurrentViewModelICommand}" CommandParameter="{x:Static nav:ViewModelType.Gateway}" >
+            <StackPanel >
+                <Image Source="/Assets/Icons/gateway.png" Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto">
+                    <Image.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{x:Static mui:Language.ConfigureGateway}" Click="ConfigureGateway_OnClick" />
+                            <MenuItem Header="{x:Static mui:Language.ConnectionView}" Click="ConnectionView_OnClick" />
+                        </ContextMenu>
+                    </Image.ContextMenu>
+                </Image>
+                <d:Label Content="{x:Static mui:Language.GatewayBridgesManagement}" 
+                         Background="Transparent" Foreground="White" Width="Auto" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttGeteway" Content="{x:Static mui:Language.NetworkDeviceManagement}" Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+        <Button Grid.Row="3" Style="{StaticResource MenuButtonStyle}"
+                Command="{Binding UpdateCurrentViewModelICommand}" CommandParameter="{x:Static nav:ViewModelType.Sensor}">
+            <StackPanel >
+                <Image Source="/Assets/Icons/documents.png" Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto"/>
+                <!--<d:TextBlock Text="DOKUMENTE" Foreground="White" HorizontalAlignment="Center" />-->
+                <d:Label Content="{x:Static mui:Language.DocumentManagement}" 
+                         Background="Transparent" Foreground="White" Width="Auto" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttDocument" Content="{x:Static mui:Language.DocumentManagement}" Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+        <Button Grid.Row="4" Style="{StaticResource MenuButtonStyle}"
+                Command="{Binding UpdateCurrentViewModelICommand}" 
+                CommandParameter="{x:Static nav:ViewModelType.NavigationCategory}">
+            <StackPanel >
+                <Image Source="/Assets/Icons/DocumentCards.png" Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto"/>
+                <!--<d:TextBlock Text="{x:Static mui:Language.NavigationCategoryManagement}" Foreground="White" HorizontalAlignment="Center" />-->
+                <d:Label Content="{x:Static mui:Language.NavigationCategoryManagement}" 
+                         Background="Transparent" Foreground="White" Width="Auto" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttNavigationCategory" Content="{x:Static mui:Language.NavigationCategoryManagement}" 
+                         Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+
+        <Button Grid.Row="7" Style="{StaticResource MenuButtonStyle}" 
+                Command="{Binding UpdateCurrentViewModelICommand}" CommandParameter="{x:Static nav:ViewModelType.SettingHeader}">
+            <StackPanel >
+                <Image Source="/Assets/Icons/SettingsHead.png" Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto"/>
+                <d:Label Content="{x:Static mui:Language.Rules}" Foreground="White" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttSettingHead" Content="{x:Static mui:Language.Rules}" Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+        <Button Grid.Row="8" Style="{StaticResource MenuButtonStyle}" 
+                Command="{Binding UpdateCurrentViewModelICommand}" CommandParameter="{x:Static nav:ViewModelType.Setting}">
+            <StackPanel >
+                <Image Source="/Assets/Icons/Settings.png" Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto"/>
+                <d:Label Content="{x:Static mui:Language.Settings}" Foreground="White" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttSetting" Content="{x:Static mui:Language.Settings}" Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+        <Button Grid.Row="9" Style="{StaticResource MenuButtonStyle}" 
+                Command="{Binding UpdateCurrentViewModelICommand}" CommandParameter="{x:Static nav:ViewModelType.PlaceElement}">
+            <StackPanel >
+                <Image Source="/Assets/Icons/PlaceElement.png" Style="{StaticResource MenuImageStyle}" Width="Auto" Height="Auto"/>
+                <d:Label Content="{x:Static mui:Language.PlaceElement}" Foreground="White" />
+            </StackPanel>
+            <Button.ToolTip>
+                <ToolTip x:Name="ttPlaceElement" Content="{x:Static mui:Language.PlaceElement}" Style="{StaticResource ttStyle}" />
+            </Button.ToolTip>
+        </Button>
+
+        <StackPanel Grid.Row="10" VerticalAlignment="Bottom">
+            <Separator Style="{StaticResource MainMenuSeparator}"  />
+            <Button x:Name="btnLogoutExit"  Style="{StaticResource MenuButtonStyle}" 
+                    Command="{Binding UpdateCurrentViewModelICommand}" CommandParameter="{x:Static nav:ViewModelType.Logout}">
+                <StackPanel>
+                    <Image Source="/Assets/Icons/shutdown-icon.png" Style="{StaticResource MenuImageStyle}"/>
+                </StackPanel>
+                <Button.ToolTip>
+                    <ToolTip x:Name="ttLogoutExit" Content="{x:Static  mui:Language.LogtoutExit}" Style="{StaticResource ttStyle}" />
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+    </Grid>
+
+</UserControl>

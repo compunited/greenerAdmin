@@ -1,0 +1,118 @@
+<UserControl x:Class="GreenerConfigurator.Views.NetworkDevice.BusConnection.MqttBusConnectionCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.NetworkDevice.BusConnection"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:enumerations ="clr-namespace:Greener.Web.Definitions.Enums;assembly=Greener.Web.Definitions.Enums"
+             xmlns:enumerationsNetworkDevice ="clr-namespace:Greener.Web.Definitions.Enums.Networks;assembly=Greener.Web.Definitions.Enums"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             mc:Ignorable="d" >
+    <StackPanel>
+
+        <StackPanel Style="{StaticResource stpHeader}" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderBusConnectionPageStatus" Style="{StaticResource lblHeader}" Content="{Binding PageStatus}"
+                    ContentStringFormat="{x:Static mui:Language.BusConnection}"/>
+            <Label x:Name="lblHeaderBusConnection" Style="{StaticResource lblHeader}" Content="{x:Static mui:Language.BusConnection}"/>
+            <!--<Label x:Name="lblHeaderBusConnectionRecord" Style="{StaticResource lblHeader}" 
+                   Content="{Binding BusConnection.Name}" />-->
+
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderBusConnectionInfo" Style="{StaticResource lblSecondHeader}" 
+                   Content="{x:Static mui:Language.MqttBusConnection}"/>
+        </StackPanel>
+
+        <Grid Margin="20,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid HorizontalAlignment="Left" Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="lblNameHeader" Content="{x:Static mui:Language.Name}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                <TextBox x:Name="txtName" Grid.Column="1" Grid.Row="0" Text="{Binding MqttBusConnectionEditModel.Name}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" />
+
+                <Label x:Name="lblStateHeader" Content="{x:Static mui:Language.State}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                <ComboBox Name="cmbState" Grid.Column="1" Grid.Row="1" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding MqttBusConnectionEditModel.State}"
+                               ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type enumerations:DeviceState }}}" IsEnabled="{Binding IsEditMode}"/>
+
+                <Label x:Name="lblBusInterfaceConnectionTypeHeader" Content="{x:Static mui:Language.BusConnectionInterfaceType}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                <ComboBox Name="cmbBusInterfaceConnectionType" Grid.Column="1" Grid.Row="2" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding MqttBusConnectionEditModel.BusInterfaceConnectionType, Mode=OneWay}" 
+                               ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type enumerationsNetworkDevice:BusInterfaceConnectionType }}}" IsEnabled="False"/>
+
+                <Label x:Name="lblBusConnectionDescriptionHeader" Content="{x:Static mui:Language.Description}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3"/>
+                <TextBox x:Name="txtBusConnectionDescription" Grid.Column="1" Grid.Row="3" Text="{Binding MqttBusConnectionEditModel.Description}"
+                             Width="350" MaxLength="250" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" Height="100" />
+                
+                <Label x:Name="lblPortHeader" Content="{x:Static mui:Language.Port}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4"/>
+                <TextBox x:Name="txtPort" Grid.Column="1" Grid.Row="4" Text="{Binding MqttBusConnectionEditModel.Port}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" />
+                <Label x:Name="lblAddressHeader" Content="{x:Static mui:Language.Address}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5"/>
+                <TextBox x:Name="txtAddress" Grid.Column="1" Grid.Row="5" Text="{Binding MqttBusConnectionEditModel.Address}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" />
+
+                <CheckBox x:Name="rdbFilterByLocation"   Grid.Column="1" Grid.Row="6"  IsChecked="{Binding MqttBusConnectionEditModel.UseSSL}" 
+                                      Content="{x:Static mui:Language.UseSSL  }" Style="{StaticResource ToggleCheckBox}"/>
+
+                <Label x:Name="lblUsernameHeader" Content="{x:Static mui:Language.Username}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="7"/>
+                <TextBox x:Name="txtUsername" Grid.Column="1" Grid.Row="7" Text="{Binding MqttBusConnectionEditModel.Username}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" />
+
+                <Label x:Name="lblPasswordHeader" Content="{x:Static mui:Language.Password}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="8"/>
+                <TextBox x:Name="txtPassword" Grid.Column="1" Grid.Row="8" Text="{Binding MqttBusConnectionEditModel.Password}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" />
+
+                <Grid x:Name="grdFooter" Grid.Column="1" Grid.Row="9" Margin="0,0,15,0"   >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnOk" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnOKCommand}" Content="{Binding ButtonOkText}" />
+                    <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelCommand}" Content="{x:Static mui:Language.Cancel}" />
+                </Grid>
+
+                <errorbox:ErrorBoxView x:Name="errBox" Grid.Row="10" Grid.Column="1" DataContext="{Binding NetworkDevice}"  />
+                
+            </Grid> 
+
+        </Grid>
+    </StackPanel>
+</UserControl>

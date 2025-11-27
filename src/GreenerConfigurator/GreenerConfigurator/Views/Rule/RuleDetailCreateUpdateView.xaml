@@ -1,0 +1,324 @@
+<UserControl x:Class="GreenerConfigurator.Views.Rule.RuleDetailCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.Rule"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             xmlns:controls="clr-namespace:GreenerConfigurator.Controls"
+             xmlns:lookoup="clr-namespace:GreenerConfigurator.Controls.Lookup"             
+             xmlns:enumerations ="clr-namespace:Greener.Web.Definitions.Enums;assembly=Greener.Web.Definitions.Enums"
+             mc:Ignorable="d" >
+    <StackPanel VerticalAlignment="Stretch">
+        <StackPanel Style="{StaticResource stpHeader}" >
+            <Label x:Name="lblHeader" Style="{StaticResource lblHeader}" Content="{x:Static mui:Language.RuleDetail}" />
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="grdRuleDetail" Margin="5,5,0,0" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="lblNameHeader" Content="{x:Static mui:Language.AlarmLevel}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                <ComboBox Name="cmbAlarmLevel" Grid.Column="1" Grid.Row="0" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding RuleDetail.CompareConditionsAlarmLevel}" 
+                               ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type enumerations:AlarmLevel }}}"/>
+
+                <Label x:Name="lblLocationNameHeader" Content="{x:Static mui:Language.LocationName}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                <StackPanel Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" Orientation="Horizontal">
+                    <TextBox x:Name="txtLocationName" Text="{Binding RuleDetail.LocationName}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+                    <Button x:Name="btnLocationLookup" Style="{StaticResource btnLookup}" 
+                                Content="..." Command="{Binding OnLocationLookupCommand}" IsEnabled="{Binding IsSelectLocationEnable}" />
+                </StackPanel>
+
+                <Grid x:Name="grdFooter" Grid.Column="1" Grid.Row="6" Margin="0,0,15,0"   >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnOk" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnOKCommand}" Content="{Binding ButtonOkText}" />
+                    <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelCommand}" Content="{x:Static mui:Language.Cancel}" />
+                </Grid>
+
+                <errorbox:ErrorBoxView x:Name="errBox" Grid.Row="7" Grid.Column="1" DataContext="{Binding RuleDetail}"  />
+            </Grid>
+
+            <!--#region ActiveTime Section -->
+
+            <StackPanel Margin="0,5,5,0" Grid.Column="1" Grid.Row="0" IsEnabled="{Binding IsAddDetailEnabled}" Visibility="{Binding ActiveTimeVisibility}">
+
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderActiveTime" Style="{StaticResource lblSecondHeader}" Content="{x:Static mui:Language.ActiveTimeList}"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnAddActiveTime"  Grid.Column="0" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnAddActiveTimeCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                        </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip x:Name="ttAddActiveTime" Content="{x:Static mui:Language.Add}" 
+                                         Style="{StaticResource ttStyle}" />
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnEditActiveTime"  Grid.Column="1" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnEditActiveTimeCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/Icons/edit-icon.png" Style="{StaticResource MenuImageStyle}" />
+                        </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip x:Name="ttEditActiveTime" Content="{x:Static mui:Language.Edit}" 
+                                         Style="{StaticResource ttStyle}" />
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnDeleteActiveTime"  Grid.Column="2" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnDeleteActiveTimeCommand }">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                        </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip x:Name="ttDeleteActiveTime" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                        </Button.ToolTip>
+                    </Button>
+                </Grid>
+
+                <ListView x:Name="lvActiveTime"  ItemsSource="{Binding ActiveTimeList}" SelectionMode="Single" 
+                                  SelectedItem="{Binding SelectedActiveTime}"
+                                  MaxHeight="400" ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                                  ScrollViewer.CanContentScroll="False">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MainListViewItem}">
+                            <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Path=DataContext.OnEditActiveTimeCommand}" />
+                            <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="{x:Static mui:Language.Rules}" >
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=FromDateTime,StringFormat='yyyy-MM-dd'}" 
+                                            Header="{x:Static mui:Language.StartDate}" Width="250"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=ToDateTime,StringFormat='yyyy-MM-dd'}" 
+                                            Header="{x:Static mui:Language.EndDate }" Width="250"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+
+            <lookoup:LookupView x:Name="lookupLocation" DataContext="{Binding LocationLookup}" Grid.Column="1"   />
+
+            <!--#endregion-->
+
+            <!--#region Compare Condition section -->
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" >
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--#region FirstCompareConditionList Section -->
+
+                    <StackPanel Margin="0,5,5,0" Grid.Column="0" IsEnabled="{Binding IsAddDetailEnabled}">
+
+                        <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                            <Label x:Name="lblHeaderFirstCompareCondition" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.FirstCompareConditionList}"/>
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnAddFirstCompareCondition"  Grid.Column="0" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnAddFirstCompareConditionCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttAddFirstCompareCondition" Content="{x:Static mui:Language.Add}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnEditFirstCompareCondition"  Grid.Column="1" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnEditFirstCompareConditionCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/edit-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttEditFirstCompareCondition" Content="{x:Static mui:Language.Edit}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnDeleteFirstCompareCondition"  Grid.Column="2" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnDeleteFirstCompareConditionCommand }">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttDeleteFirstCompareCondition" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                        </Grid>
+
+                        <ListView x:Name="lvFirstCompareCondition"  ItemsSource="{Binding FirstCompareConditionList}" SelectionMode="Single" 
+                                  SelectedItem="{Binding SelectedFirstCompareCondition}"
+                                  MaxHeight="400" ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                                  ScrollViewer.CanContentScroll="False">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource MainListViewItem}">
+                                    <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Path=DataContext.OnEditFirstCompareCondition}" />
+                                    <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="{x:Static mui:Language.Rules}" >
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=DeviceName}" 
+                                            Header="{x:Static mui:Language.DeviceName}" Width="350"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=DataDetailNumber}" 
+                                            Header="{x:Static mui:Language.DataDetailNumber }" Width="150"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=CompareOperatorTypeName}" 
+                                            Header="{x:Static mui:Language.CompareOperatorType }" Width="200"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Value}" 
+                                            Header="{x:Static mui:Language.Value }" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                    </StackPanel>
+
+                    <!--#endregion-->
+
+                    <!--#region SecondCompareConditionList Section -->
+
+                    <StackPanel Margin="0,5,5,0" Grid.Column="1" IsEnabled="{Binding IsAddDetailEnabled}">
+
+                        <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                            <Label x:Name="lblHeaderSecondCompareCondition" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.SecondCompareConditionList}"/>
+                        </StackPanel>
+
+                        <Grid IsEnabled="{Binding IsSecondCompareConditionListEnabled}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnAddSecondCompareCondition"  Grid.Column="0" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnAddSecondCompareConditionCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttAddSecondCompareCondition" Content="{x:Static mui:Language.Add}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnEditSecondCompareCondition"  Grid.Column="1" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnEditSecondCompareConditionCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/edit-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttEditSecondCompareCondition" Content="{x:Static mui:Language.Edit}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnDeleteSecondCompareCondition"  Grid.Column="2" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnDeleteSecondCompareConditionCommand }">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttDeleteSecondCompareCondition" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                        </Grid>
+
+                        <ListView x:Name="lvSecondCompareCondition"  ItemsSource="{Binding SecondCompareConditionList}" SelectionMode="Single" 
+                                  SelectedItem="{Binding SelectedSecondCompareCondition}"
+                                  MaxHeight="400" ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                                  ScrollViewer.CanContentScroll="False">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource MainListViewItem}">
+                                    <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Path=DataContext.OnEditSecondCompareCondition}" />
+                                    <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="{x:Static mui:Language.Rules}" >
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=DeviceName}" 
+                                            Header="{x:Static mui:Language.DeviceName}" Width="350"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=DataDetailNumber}" 
+                                            Header="{x:Static mui:Language.DataDetailNumber }" Width="150"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=CompareOperatorTypeName}" 
+                                            Header="{x:Static mui:Language.CompareOperatorType }" Width="200"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Value}" 
+                                            Header="{x:Static mui:Language.Value }" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                    </StackPanel>
+
+                    <!--#endregion-->
+
+                </Grid>
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+
+        </Grid>
+
+    </StackPanel>
+
+</UserControl>

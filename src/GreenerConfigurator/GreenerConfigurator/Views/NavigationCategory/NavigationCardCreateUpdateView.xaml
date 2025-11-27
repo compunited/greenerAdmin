@@ -1,0 +1,368 @@
+<UserControl x:Class="GreenerConfigurator.Views.NavigationCategory.NavigationCardCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.NavigationCategory"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:lookoup="clr-namespace:GreenerConfigurator.Controls.Lookup"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             mc:Ignorable="d" >
+    <StackPanel VerticalAlignment="Stretch" >
+        <StackPanel Style="{StaticResource stpHeader}" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderNavigationCard" Style="{StaticResource lblHeader}" Content="{Binding PageStatus}"
+                    ContentStringFormat="{x:Static mui:Language.NavigationCard}"/>
+            <Label x:Name="lblHeaderNavigationCardRecord" Style="{StaticResource lblHeader}" 
+                   Content="{Binding NavigationCard.CardName}" />
+        </StackPanel>
+
+        <Grid x:Name="grdDataEntryMain" Margin="15,5,5,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" >
+
+                <!--#region Navigation Card -->
+
+                <Grid x:Name="grdNavigationCard" Margin="20,20,0,0" HorizontalAlignment="Left" IsEnabled="{Binding IsLookupDeactivated}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblCardNameHeader" Content="{x:Static mui:Language.NavigationCardCardName}" 
+                       Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox x:Name="txtCardName" Grid.Row="0" Grid.Column="1" Text="{Binding NavigationCard.CardName}" 
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" />
+
+                    <Label x:Name="lblLocationNameHeader" Content="{x:Static mui:Language.LocationName}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                    <StackPanel Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Left" Orientation="Horizontal">
+                        <TextBox x:Name="txtLocationName" Text="{Binding NavigationCard.LocationName, ValidatesOnDataErrors=True}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+                        <Button x:Name="btnLocationLookup" Style="{StaticResource btnLookup}" Content="..." 
+                                Command="{Binding OnLocationLookupCommand}" IsEnabled="{Binding IsNavigationCardLocationAvailble}"/>
+                    </StackPanel>
+
+                    <Grid x:Name="grdFooter" Grid.Column="1" Grid.Row="2" Margin="0,0,15,0"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnOk" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnOkCommand}" Content="{Binding ButtonOkText}" />
+                        <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelCommand}" Content="{x:Static mui:Language.Cancel}" />
+                    </Grid>
+
+                    <!--#region  OLD  -->
+
+                    <!--<Label Content="Sensor List" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" Orientation="Horizontal">
+                    <ListView x:Name="LogicalDeviceList" ItemsSource="{Binding NavigationCard.LogicalDeviceList}" MaxHeight="500" 
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedDeviceData}" SelectionChanged="SelectItemClick"
+                          extension:GridViewSort.Command="{Binding OnSortDataCommand}" Width="350" Margin="5,5,0,0" >
+                        -->
+                    <!--<Setter Property="Padding" Value="5,5,0,5" />
+                        <Setter Property="Margin" Value="5,5,0,0" />-->
+                    <!--
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                                <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnEditPaintCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="false" >
+                                <GridViewColumn DisplayMemberBinding="{Binding LogicalDeviceName}" 
+                                            extension:GridViewSort.PropertyName="LogicalDeviceName"
+                                            Header="{x:Static mui:Language.Name}" Width="350" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
+                        <Grid Name="grdSensor" HorizontalAlignment="Left" >
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="btnSensorList"  Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource btnLookup}" Content="..."  Command="{Binding OnSensorListCommand}" />
+                            <Button x:Name="btnDeleteSensor" Grid.Row="1"  Style="{StaticResource btnImage}" Command="{Binding OnDeleteSensorCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttDelete" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                        </Grid>
+
+                    </StackPanel>
+                </StackPanel>-->
+
+                    <!--#endregion-->
+
+                    <errorbox:ErrorBoxView x:Name="errBox" Grid.Row="4" Grid.Column="1" DataContext="{Binding NavigationCard}"  />
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Navigation card sensor -->
+
+                <StackPanel x:Name="stNavigationCardSensorList" Margin="0,5,0,0"  HorizontalAlignment="Stretch" IsEnabled="{Binding IsAssginedSensorAvailable}">
+                  
+                    <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                        <Label x:Name="lblHeaderNavigationCardSensorList" Style="{StaticResource lblSecondHeader}" Content="{x:Static mui:Language.NavigationCardAssignedSensor}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,10,0,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnAdd"  Grid.Column="0" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnAddSensorNavigationCardCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttAdd" Content="{x:Static mui:Language.Add}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnDelete"  Grid.Column="2" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnRemoveSensorNavigationCardCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttDelete" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnMoveSensorUp"  Grid.Column="3" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnMoveSensorUpCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/dark-green-arrow-up-icon.png" Style="{StaticResource MenuImageStyle}"  />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttMoveSensorUp" Content="{x:Static mui:Language.MoveUp}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnMoveSensorDown"  Grid.Column="4" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnMoveSensorDownCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/dark-green-arrow-down-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttMoveSensorDown" Content="{x:Static mui:Language.MoveDown}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnSaveSortNumberChanges"  Grid.Column="5" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnSaveSortnumberChanges}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/save-changes-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttSaveSortNumberChanges" Content="{x:Static mui:Language.SaveNewSortChanges}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnChangeDetailNumber"  Grid.Column="6" Style="{StaticResource btnImage}" IsEnabled="{Binding IsExchangeButtonEnable}" 
+                                     Command ="{Binding OnExchangeDetailNumberCommand}" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/change-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttChangeDetailNumber" Content="{x:Static mui:Language.ExchangeDetailNumber}" 
+                                             Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+
+                    <ListView x:Name="lvLogicalDeviceNavigationM2M" ItemsSource="{Binding NavigationCardM2MList}" MaxHeight="500"  HorizontalContentAlignment="Stretch"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedNavigationM2M}" SelectionChanged="lvLogicalDeviceNavigationM2M_SelectionChanged"
+                          extension:GridViewSort.Command="{Binding OnSortDataCommand}"  >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                                <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnRemoveSensorNavigationCardCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="false" >
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}" 
+                                            extension:GridViewSort.PropertyName="LogicalDeviceName"
+                                            Header="{x:Static mui:Language.Name}" Width="350" />
+                                <GridViewColumn DisplayMemberBinding="{Binding LogicalDeviceName}" 
+                                            extension:GridViewSort.PropertyName="LogicalDeviceName"
+                                            Header="{x:Static mui:Language.LogicalDeviceName}" Width="350" />
+                                <GridViewColumn DisplayMemberBinding="{Binding DataDetailNumber}" 
+                                            extension:GridViewSort.PropertyName="DataDetailNumber"
+                                            Header="{x:Static mui:Language.DataDetailNumber}" Width="100" />
+                                <GridViewColumn DisplayMemberBinding="{Binding UnitMeasurmentName}" 
+                                            extension:GridViewSort.PropertyName="UnitMeasurmentName"
+                                            Header="{x:Static mui:Language.UnitMeasurmentName}" Width="100" />
+                                <GridViewColumn DisplayMemberBinding="{Binding SortNumber}" 
+                                            extension:GridViewSort.PropertyName="SortNumber"
+                                            Header="{x:Static mui:Language.SortNumber}" Width="100" />
+                                <GridViewColumn DisplayMemberBinding="{Binding LatestValue}" 
+                                                Header="{x:Static mui:Language.LatestValue}" Width="100" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </StackPanel>
+
+                <!--#endregion  -->
+
+            </StackPanel>
+
+            <!--#region Lookup -->
+
+            <StackPanel x:Name="stpLookup" Margin="20,0,20,0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="5"  >
+
+                <Grid x:Name="grdLookup" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <lookoup:LookupView x:Name="lookupLocation"  DataContext="{Binding LocationLookup}" Grid.Column="0" Visibility="{Binding LocationLookup.LookupVisibility}" />
+
+                    <StackPanel Grid.Column="0" VerticalAlignment="Top" Visibility="{Binding LookupDeviceVisibility}">
+                        <StackPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=txtNavigationM2M, Path=IsVisible}" Value="True">
+                                        <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=txtNavigationM2M}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+
+                        <Grid x:Name="grdLookupDeviceFooter" Margin="0,0,15,0"   >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnCancelLookupDevice" Grid.Column="0" Style="{StaticResource btnPrimaryCancel}" 
+                                Command="{Binding OnCancelLookupDeviceCommand}" 
+                                Content="{x:Static mui:Language.Cancel}" />
+                            <Button x:Name="btnAddLookupDevice" Grid.Column="1" Style="{StaticResource btnPrimary}" 
+                                Command="{Binding OnSelectLookupDeviceCommand}" 
+                                 Content="{x:Static mui:Language.Add}" />
+                        </Grid>
+                        <Grid  Margin="0,0,15,10"   >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lblNavigationM2MNameHeader" Content="{x:Static mui:Language.NavigationCardCardName}" 
+                                    Style="{StaticResource lblDataEntryHeader}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                            <TextBox x:Name="txtNavigationM2M" Grid.Row="0" Grid.Column="1" Text="{Binding NewNavigationM2MName }" 
+                                        Width="350" MaxLength="150" Style="{StaticResource txtMain}" />
+                        </Grid>
+
+                        <ListView x:Name="LogicalDeviceList"  ItemsSource="{Binding AvailableDeviceListLookup}" MaxHeight="500" 
+                                  HorizontalContentAlignment="Stretch" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  SelectionMode="Single" SelectedItem="{Binding SelectedDeviceNavigationLookup}" >
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                                    <!--<Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnEditPaintCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                    <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>-->
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="false" >
+                                    <GridViewColumn DisplayMemberBinding="{Binding LogicalDeviceName}" 
+                                            Header="{x:Static mui:Language.LogicalDeviceName}" Width="350" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding DataDetailNumber}" 
+                                            Header="{x:Static mui:Language.DataDetailNumber}" Width="100" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding UnitMeasurmentName}" 
+                                            Header="{x:Static mui:Language.UnitMeasurmentName}" Width="100" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding LatestValue}" 
+                                            Header="{x:Static mui:Language.LatestValue}" Width="100" />
+                                </GridView>
+                            </ListView.View>
+
+                        </ListView>
+
+
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+
+            <!--<StackPanel x:Name="stpDeviceLookup" Margin="20,20,20,0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="5">
+                <lookoup:LookupView x:Name="lookupLogicalDevice" DataContext="{Binding LogicalDeviceLookup}"/>
+            </StackPanel>-->
+
+            <!--<StackPanel Grid.Column="1" Margin="20,120,20,0" Grid.Row="0" Grid.RowSpan="5" Orientation="Horizontal" Visibility="{Binding SensorDataVisibility}">
+                <Label Content="Sensor Data" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" />
+                <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left">
+                    <ListView ItemsSource="{Binding NavigationCard.LoraWanDataRowsList}" MaxHeight="500" 
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" extension:GridViewSort.Command="{Binding OnSortDataCommand}" Width="550" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                                <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnEditPaintCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="false" >
+                                <GridViewColumn DisplayMemberBinding="{Binding UnitOfMeasurementName}" 
+                                            extension:GridViewSort.PropertyName="UnitOfMeasurementName"
+                                            Header="{x:Static mui:Language.Name}" Width="200" />
+                                <GridViewColumn DisplayMemberBinding="{Binding PhysicalDeviceName}" 
+                                            extension:GridViewSort.PropertyName="PhysicalDeviceName"
+                                            Header="{x:Static mui:Language.Name}" Width="200" />
+                                <GridViewColumn DisplayMemberBinding="{Binding DataValue}" 
+                                            extension:GridViewSort.PropertyName="DataValue"
+                                            Header="Value" Width="150" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>-->
+
+            <!--#endregion-->
+        </Grid>
+
+    </StackPanel>
+</UserControl>

@@ -1,13 +1,29 @@
-namespace GreenerConfigurator.ClientCore.Models;
+﻿using Greener.Web.Definitions.Api.MasterData.Location;
 
-/// <summary>
-/// Represents a specific floor or sub-area inside a physical location.
-/// </summary>
-public sealed class LocationDetailModel
+namespace GreenerConfigurator.ClientCore.Models
 {
-    public Guid Id { get; set; }
-    public Guid LocationId { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string? Description { get; set; }
-    public int? FloorNumber { get; set; }
+    public class LocationDetailModel : LocationDetailDto
+    {
+
+        public string LocationDetailTypeName
+        {
+            get
+            {
+                var temp = string.Empty;
+
+                try
+                {
+                    temp = LocationDetailType.GetDisplayAttributeName();
+                }
+                catch
+                {
+                    temp = LocationDetailType.ToString();
+                }
+
+                return temp;
+            }
+        }
+
+        public bool AddAsRoot { get; set; }
+    }
 }

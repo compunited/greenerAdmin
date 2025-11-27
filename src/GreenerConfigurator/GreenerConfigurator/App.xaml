@@ -1,0 +1,112 @@
+<Application x:Class="GreenerConfigurator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:NavigationCategoryViewModel="clr-namespace:GreenerConfigurator.ViewModels.NavigationCategory"
+             xmlns:NavigationCategoryView="clr-namespace:GreenerConfigurator.Views.NavigationCategory"
+             xmlns:NetworkDeviceViewModel="clr-namespace:GreenerConfigurator.ViewModels.NetworkDevice"
+             xmlns:NetworkDeviceView="clr-namespace:GreenerConfigurator.Views.NetworkDevice"
+             xmlns:ImportSensorViewModel="clr-namespace:GreenerConfigurator.ViewModels.Sensor"
+             xmlns:ImportSensorView="clr-namespace:GreenerConfigurator.Views.Sensor"
+             xmlns:BusConnectionViewModel="clr-namespace:GreenerConfigurator.ViewModels.NetworkDevice.BusConnection"
+             xmlns:BusConnectionView="clr-namespace:GreenerConfigurator.Views.NetworkDevice.BusConnection"
+             xmlns:ViewModels="clr-namespace:GreenerConfigurator.ViewModels"
+             xmlns:Views="clr-namespace:GreenerConfigurator.Views"
+             xmlns:Lookup="clr-namespace:GreenerConfigurator.Controls.Lookup"
+             xmlns:LocationView="clr-namespace:GreenerConfigurator.Views.Location"
+             xmlns:LocationViewModel="clr-namespace:GreenerConfigurator.ViewModels.Location"
+             xmlns:RuleSettingView="clr-namespace:GreenerConfigurator.Views.RuleSetting"
+             xmlns:RuleSettingViewModel="clr-namespace:GreenerConfigurator.ViewModels.RuleSetting"
+             xmlns:RuleView="clr-namespace:GreenerConfigurator.Views.Rule"
+             xmlns:RuleViewModel="clr-namespace:GreenerConfigurator.ViewModels.Rule"
+             xmlns:PlanViewViewModel="clr-namespace:GreenerConfigurator.ViewModels.PlanView"
+             xmlns:SetPlanViewView="clr-namespace:GreenerConfigurator.Views.PlanView"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Assets/Styles/Common.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type NavigationCategoryViewModel:NavigationCategoryManagementViewModel}">
+                <NavigationCategoryView:NavigationCategoryManagementView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type NavigationCategoryViewModel:NavigationCardCreateUpdateViewModel}">
+                <NavigationCategoryView:NavigationCardCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type NavigationCategoryViewModel:NavigationCardGroupCreateUpdateViewModel}">
+                <NavigationCategoryView:NavigationCardGroupCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type Lookup:LookupViewModel}">
+                <Lookup:LookupView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModels:LogoutViewModel}">
+                <Views:LogoutView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type LocationViewModel:LocationManagementViewModel}">
+                <LocationView:LocationManagementView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type RuleSettingViewModel:NewRuleSettingViewModel}">
+                <RuleSettingView:NewRulesettingView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type NetworkDeviceViewModel:NetworkDeviceManagementViewModel}">
+                <NetworkDeviceView:NetworkDeviceManagementView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type NetworkDeviceViewModel:NetworkDeviceCreateUpdateViewModel}">
+                <NetworkDeviceView:NetworkDeviceCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type BusConnectionViewModel:MqttBusConnectionCreateUpdateViewModel}">
+                <BusConnectionView:MqttBusConnectionCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type RuleViewModel:RuleManagementViewModel}">
+                <RuleView:RuleManagementView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type RuleViewModel:RuleCreateUpdateViewModel}">
+                <RuleView:RuleCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type RuleViewModel:RuleDetailCreateUpdateViewModel}">
+                <RuleView:RuleDetailCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type RuleViewModel:ActiveTimeCreateUpdateViewModel}">
+                <RuleView:ActiveTimeCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type RuleViewModel:CompareConditionCreateUpdateViewModel}">
+                <RuleView:CompareConditionCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type RuleViewModel:NotificationGroupDataCreateUpdateViewModel}">
+                <RuleView:NotificationGroupDataCreateUpdateView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type ImportSensorViewModel:SensorImportViewModel}">
+                <ImportSensorView:SensorImportView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type PlanViewViewModel:PlanViewViewModel}">
+                <SetPlanViewView:PlanViewView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type PlanViewViewModel:PlanViewManagementViewModel}">
+                <SetPlanViewView:PlanViewManagementView />
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type NetworkDeviceViewModel:UnassignedNetworkDeviceManagementViewModel}">
+                <NetworkDeviceView:UnassignedNetworkDeviceManagementView />
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

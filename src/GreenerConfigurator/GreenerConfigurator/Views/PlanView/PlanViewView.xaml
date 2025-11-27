@@ -1,0 +1,218 @@
+<UserControl x:Class="GreenerConfigurator.Views.PlanView.PlanViewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.PlanView"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             xmlns:controls="clr-namespace:GreenerConfigurator.Controls"
+             xmlns:enumerations ="clr-namespace:Greener.Web.Definitions.Enums.Networks;assembly=Greener.Web.Definitions.Enums"    
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <Style TargetType="GridViewColumnHeader" x:Key="temp" >
+            <Setter Property="Padding" Value="0,2,0,2" />
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="IsEnabled" Value="True" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding}">
+                        </TextBlock>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="TextElement.Foreground" Value="Gray"/>
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    <StackPanel VerticalAlignment="Stretch" >
+
+        <StackPanel Style="{StaticResource stpHeader}" >
+            <Label x:Name="lblHeader" Style="{StaticResource lblHeader}" Content="{x:Static mui:Language.PlanView}" />
+        </StackPanel>
+
+        <Grid x:Name="grdMain" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--#region PlanView -->
+
+            <StackPanel Margin="15,10,5,0" Grid.Column="0" >
+                <StackPanel Style="{StaticResource stpSecondHeader}" >
+                    <Label Style="{StaticResource lblSecondHeader}" Content="{x:Static mui:Language.PlanView}" />
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="600"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Column="0" Grid.Row="0" Margin="0,10,0,20" HorizontalAlignment="Left" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="{x:Static mui:Language.LocationName}" 
+                               Style="{StaticResource lblDataEntryHeader}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedLocation.LocationName}" TabIndex="0"
+                                 Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False"/>
+
+                        <Label Content="{x:Static mui:Language.Name}" 
+                                   Style="{StaticResource lblDataEntryHeader}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding PlanView.Name, ValidatesOnDataErrors=True}" 
+                                     Width="350" MaxLength="150" Style="{StaticResource txtMain}" />
+
+                        <Label Content="{x:Static mui:Language.Description}" 
+                                   Style="{StaticResource lblDataEntryHeader}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True"
+                                     Text="{Binding PlanView.Description, ValidatesOnDataErrors=True}"   VerticalScrollBarVisibility="Visible" 
+                                     Width="350" MaxLength="150" Style="{StaticResource txtMain}"  Height="85"  />
+                    </Grid>
+
+                    <!--#region Place ElementInfo -->
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="10,10,0,0" >
+
+                        <ListView ItemsSource="{Binding PlanElements}" SelectionMode="Single"   SelectedItem="{Binding SelectedPlanElement}"
+                                  MaxHeight="500" ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                                  ScrollViewer.CanContentScroll="False">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource MainListViewItem}">
+                                    <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                        AncestorType={x:Type UserControl}}, Path=DataContext.OnDeleteElementCommand}" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="{x:Static mui:Language.Label}" >
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Label}" 
+                                                    Header="{x:Static mui:Language.Label}" Width="200" HeaderContainerStyle="{StaticResource temp}"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=DeviceName}" 
+                                                    Header="{x:Static mui:Language.DeviceName}" Width="150" HeaderContainerStyle="{StaticResource temp}"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=DataDetailNumber}" 
+                                                    Header="{x:Static mui:Language.DataDetailNumber}" Width="150" HeaderContainerStyle="{StaticResource temp}"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=PositionX}" 
+                                                    Header="{x:Static mui:Language.PositionX}" Width="70" HeaderContainerStyle="{StaticResource temp}"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=PositionY}" 
+                                                    Header="{x:Static mui:Language.PositionY}" Width="70" HeaderContainerStyle="{StaticResource temp}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                    </StackPanel>
+
+                    <!--#endregion-->
+
+                    <!--#region Image Section -->
+
+                    <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalScrollBarVisibility="Visible"
+                                  VerticalScrollBarVisibility="Visible">
+                        <Image x:Name="testImage" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding PlanBitMap}"
+                                  Stretch="Fill" MouseDown="Image_MouseDown" IsEnabled="{Binding IsImageEnable}"  />
+                    </ScrollViewer>
+
+                    <!--#endregion-->
+
+                    <!--#region Action Buttons -->
+
+                    <Grid Grid.ColumnSpan="2" Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnSavePlanViewCommand}" Content="{Binding ButtonOkText}" />
+                        <Button Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                                Command="{Binding OnCancelPlanViewCommand}" Content="{x:Static mui:Language.Cancel}" />
+                    </Grid>
+
+                    <!--#endregion-->
+
+                </Grid>
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <!--#region Available devices info  -->
+
+            <StackPanel Margin="10,10,10,0" Grid.Column="1">
+
+                <StackPanel Style="{StaticResource stpSecondHeader}" >
+                    <Label x:Name="lblHeaderLocationAddUpdate" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.SetPanelViewHeader}" />
+                </StackPanel>
+
+                <ListView ItemsSource="{Binding PhysicalDevices}" SelectionMode="Single"   
+                           SelectedItem="{Binding SelectedPhysicalDevice}"
+                          MaxHeight="350" ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                          ScrollViewer.CanContentScroll="False">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MainListViewItem}"/>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="{x:Static mui:Language.DeviceName}" >
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = PhysicalDeviceName}" 
+                             Header="{x:Static mui:Language.DeviceName}" Width="250" HeaderContainerStyle="{StaticResource temp}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView ItemsSource="{Binding LoraWanList}" SelectionMode="Single" Margin="0,10,0,0"
+                          SelectedItem="{Binding SelectedLoraWan}"
+                          MaxHeight="500" ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                          ScrollViewer.CanContentScroll="False">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem" BasedOn="{StaticResource MainListViewItem}"/>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = UnitOfMeasurementName}" 
+                                            Header="{x:Static mui:Language.UnitMeasurmentName}" Width="200" HeaderContainerStyle="{StaticResource temp}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = DataDetailNumber}" 
+                                            Header="{x:Static mui:Language.DataDetailNumber}" Width="150" HeaderContainerStyle="{StaticResource temp}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Visibility="{Binding ErrorMessageVisibility}" >
+                    <Label x:Name="lblError" Style="{StaticResource lblDataEntryHeader}" Foreground="Red" Content="{Binding ErrorMessage}" />
+                </StackPanel>
+                
+            </StackPanel>
+
+            <!--#endregion-->
+
+        </Grid>
+
+    </StackPanel>
+</UserControl>

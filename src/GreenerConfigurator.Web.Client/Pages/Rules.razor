@@ -1,36 +1,54 @@
 @page "/rules"
-@inject GreenerConfigurator.ClientCore.Services.RuleService RuleService
+@using GreenerConfigurator.ClientCore.Services.Rule
+@using Greener.Web.Definitions.API.Rule
+@using Microsoft.AspNetCore.Authorization
+@inject RuleService RuleService
 
-<PageTitle>Rules</PageTitle>
+<PageTitle>Rules | Greener Configurator</PageTitle>
 
-<h1 class="display-6">Rules</h1>
-<p class="text-muted">Rules keep the Greener platform proactive. Toggle or update them directly from the browser.</p>
+<div class="page-header">
+    <h1>Rules</h1>
+    <button class="btn btn-primary">
+        <span class="bi bi-plus-lg"></span> Add Rule
+    </button>
+</div>
 
-@if (_isLoading)
+@if (rules == null)
 {
-    <p><em>Loading rules…</em></p>
+    <div class="loading-state">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading rules...</p>
+    </div>
 }
-else if (!string.IsNullOrEmpty(_loadError))
+else if (!rules.Any())
 {
-    <div class="alert alert-danger">@_loadError</div>
+    <div class="empty-state">
+        <div class="empty-icon">
+            <span class="bi bi-diagram-3"></span>
+        </div>
+        <h3>No Rules Configured</h3>
+        <p>Create rules to automate your system.</p>
+        <button class="btn btn-primary mt-3">Add Rule</button>
+    </div>
 }
 else
 {
-    <div class="row gy-3">
-        @foreach (var rule in _rules)
+    <div class="row g-3">
+        @foreach (var rule in rules)
         {
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100">
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <div>
-                                <h2 class="h5 mb-0">@rule.Name</h2>
-                                <small class="text-muted">@rule.Category</small>
-                            </div>
-                            <span class=@(rule.IsEnabled ? "badge text-bg-success" : "badge text-bg-secondary")>@(rule.IsEnabled ? "Active" : "Disabled")</span>
+                            <h5 class="card-title mb-0">@rule.Name</h5>
+                            <span class="badge bg-primary">Active</span>
                         </div>
-                        <p>@rule.Description</p>
-                        <button class="btn btn-sm btn-outline-primary" @onclick="() => EditRuleAsync(rule.Id)">Edit</button>
+                        <!-- Description removed as it is not available in RuleViewDto -->
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <button class="btn btn-sm btn-outline-secondary w-100">Configure</button>
                     </div>
                 </div>
             </div>
@@ -38,122 +56,55 @@ else
     </div>
 }
 
-@if (_editingRule is not null)
-{
-    <EditForm Model="_editingRule" OnValidSubmit="SaveRuleAsync">
-        <DataAnnotationsValidator />
-        <div class="modal d-block" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit rule</h5>
-                        <button type="button" class="btn-close" aria-label="Close" @onclick="CancelEdit"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <InputText class="form-control" @bind-Value="_editingRule.Name" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <InputText class="form-control" @bind-Value="_editingRule.Category" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <InputTextArea class="form-control" @bind-Value="_editingRule.Description" />
-                        </div>
-                        <div class="form-check form-switch mb-3">
-                            <InputCheckbox class="form-check-input" @bind-Value="_editingRule.IsEnabled" />
-                            <label class="form-check-label">Rule is active</label>
-                        </div>
-                        <div class="row g-3">
-                            <div class="col">
-                                <label class="form-label">Start time</label>
-                                <InputText class="form-control" @bind-Value="_startTime" />
-                            </div>
-                            <div class="col">
-                                <label class="form-label">End time</label>
-                                <InputText class="form-control" @bind-Value="_endTime" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" @onclick="CancelEdit">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </EditForm>
-    <div class="modal-backdrop fade show"></div>
-}
-
 @code {
-    private bool _isLoading = true;
-    private string? _loadError;
-    private List<GreenerConfigurator.ClientCore.Models.RuleSummaryModel> _rules = new();
-    private GreenerConfigurator.ClientCore.Models.RuleEditModel? _editingRule;
-    private string? _startTime;
-    private string? _endTime;
+    private IEnumerable<RuleViewDto>? rules; 
 
-    protected override async Task OnInitializedAsync() => await LoadAsync();
-
-    private async Task LoadAsync()
+    protected override async Task OnInitializedAsync()
     {
-        try
+        await Task.Delay(500);
+        try 
         {
-            _isLoading = true;
-            _loadError = null;
-            var rules = await RuleService.GetRulesAsync();
-            _rules = rules?.ToList() ?? new List<GreenerConfigurator.ClientCore.Models.RuleSummaryModel>();
+            rules = await RuleService.GetAllRulesAsync();
         }
         catch (Exception ex)
         {
-            _loadError = ex.Message;
+            Console.WriteLine($"Error loading rules: {ex.Message}");
+            rules = new List<RuleViewDto>();
         }
-        finally
-        {
-            _isLoading = false;
-        }
-    }
-
-    private async Task EditRuleAsync(Guid ruleId)
-    {
-        var rule = await RuleService.GetRuleAsync(ruleId);
-        if (rule is null)
-        {
-            return;
-        }
-
-        _editingRule = rule;
-        _startTime = rule.StartTime?.ToString("HH:mm");
-        _endTime = rule.EndTime?.ToString("HH:mm");
-    }
-
-    private void CancelEdit()
-    {
-        _editingRule = null;
-    }
-
-    private async Task SaveRuleAsync()
-    {
-        if (_editingRule is null)
-        {
-            return;
-        }
-
-        if (TimeOnly.TryParse(_startTime, out var parsedStart))
-        {
-            _editingRule.StartTime = parsedStart;
-        }
-
-        if (TimeOnly.TryParse(_endTime, out var parsedEnd))
-        {
-            _editingRule.EndTime = parsedEnd;
-        }
-
-        await RuleService.UpdateRuleAsync(_editingRule);
-        _editingRule = null;
-        await LoadAsync();
     }
 }
+
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .loading-state, .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid var(--greener-border);
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        color: var(--greener-text-muted);
+        margin-bottom: 1rem;
+    }
+    
+    .card {
+        border: 1px solid var(--greener-border);
+        box-shadow: var(--shadow-sm);
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+    
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+</style>

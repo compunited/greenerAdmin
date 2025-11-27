@@ -1,0 +1,667 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddLocationAndDetail" xml:space="preserve">
+    <value>Add Location/Location Detail</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CurrentUser" xml:space="preserve">
+    <value>Current User:</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="DataDetailNumber" xml:space="preserve">
+    <value>Data Detail Number</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DocumentManagement" xml:space="preserve">
+    <value>Document Management</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FilterByLocation" xml:space="preserve">
+    <value>Filter By Location</value>
+  </data>
+  <data name="FilterByLocationDetail" xml:space="preserve">
+    <value>Filter By Location Detail</value>
+  </data>
+  <data name="NetworkDeviceList" xml:space="preserve">
+    <value>Network Device List</value>
+  </data>
+  <data name="NetworkDeviceManagement" xml:space="preserve">
+    <value>Network Device Managment</value>
+  </data>
+  <data name="GreenerConfigurator" xml:space="preserve">
+    <value>Greener Configurator</value>
+  </data>
+  <data name="GroupedNavigationCardList" xml:space="preserve">
+    <value>Grouped Navigation Card List</value>
+  </data>
+  <data name="HideDetails" xml:space="preserve">
+    <value>Hide Details</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitiude</value>
+  </data>
+  <data name="LocationAndLocationDetailManagement" xml:space="preserve">
+    <value>Location|LocationDetail Management</value>
+  </data>
+  <data name="GatewayBridgesManagement" xml:space="preserve">
+    <value>Gateway and Bridges Management</value>
+  </data>
+  <data name="LocationDetailAddAsRoot" xml:space="preserve">
+    <value>Add As Root</value>
+  </data>
+  <data name="LocationDetailList" xml:space="preserve">
+    <value>Location Detail List</value>
+  </data>
+  <data name="LocationDetailName" xml:space="preserve">
+    <value>LocationDetail Name</value>
+  </data>
+  <data name="LocationDetailType" xml:space="preserve">
+    <value>LocationDetail Type</value>
+  </data>
+  <data name="LocationHeader" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="LocationList" xml:space="preserve">
+    <value>Location List</value>
+  </data>
+  <data name="LocationName" xml:space="preserve">
+    <value>Location Name</value>
+  </data>
+  <data name="LocationType" xml:space="preserve">
+    <value>Location Type</value>
+  </data>
+  <data name="LocationTypeName" xml:space="preserve">
+    <value>Location Type</value>
+  </data>
+  <data name="LogicalDeviceName" xml:space="preserve">
+    <value>Logical Device Name</value>
+  </data>
+  <data name="LogoutAndExit" xml:space="preserve">
+    <value>Logout And Exit</value>
+  </data>
+  <data name="LogtoutExit" xml:space="preserve">
+    <value>Logout/Exit</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NavigationCard" xml:space="preserve">
+    <value>{0} Navigation Card</value>
+  </data>
+  <data name="NavigationCardAssignedSensor" xml:space="preserve">
+    <value>Navigation Card Assigned Sensor</value>
+  </data>
+  <data name="NavigationCardCardName" xml:space="preserve">
+    <value>Card Name</value>
+  </data>
+  <data name="NavigationCardGroupHeader" xml:space="preserve">
+    <value>Card Group</value>
+    <comment>Header</comment>
+  </data>
+  <data name="NavigationCardGroupList" xml:space="preserve">
+    <value>Navigation Card Group List</value>
+  </data>
+  <data name="NavigationCardList" xml:space="preserve">
+    <value>Navigation Card List</value>
+  </data>
+  <data name="NavigationCategory" xml:space="preserve">
+    <value>Navigation Category</value>
+  </data>
+  <data name="NavigationCategoryList" xml:space="preserve">
+    <value>Navigation Category List</value>
+  </data>
+  <data name="NavigationCategoryManagement" xml:space="preserve">
+    <value>Navigation Category Management</value>
+  </data>
+  <data name="NavigationCategoryName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="NewRule" xml:space="preserve">
+    <value>New Rule</value>
+  </data>
+  <data name="NotGroupedNavigationCardList" xml:space="preserve">
+    <value>Not Grouped Navigation Card List</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveNewSortChanges" xml:space="preserve">
+    <value>Save new sort number changes</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SensorManagement" xml:space="preserve">
+    <value>Sensor Management</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Show Details</value>
+  </data>
+  <data name="SortNumber" xml:space="preserve">
+    <value>Sort Number</value>
+  </data>
+  <data name="UnitMeasurmentName" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="UsernameCouldNotBeEmpty" xml:space="preserve">
+    <value>Username Could Not Be Empty</value>
+  </data>
+  <data name="ManageCards" xml:space="preserve">
+    <value>Manage Cards</value>
+  </data>
+  <data name="ManageCategories" xml:space="preserve">
+    <value>Manage Catgories</value>
+  </data>
+  <data name="AssginCategory" xml:space="preserve">
+    <value>Assign Category</value>
+  </data>
+  <data name="AssignedCategoriesList" xml:space="preserve">
+    <value>Assigned Categories List</value>
+  </data>
+  <data name="AvailableCategoriesList" xml:space="preserve">
+    <value>Available Categories List</value>
+  </data>
+  <data name="RemoveCategory" xml:space="preserve">
+    <value>Remove Category</value>
+  </data>
+  <data name="NetworkDeviceSubType" xml:space="preserve">
+    <value>Network Device SubType</value>
+  </data>
+  <data name="NetworkDeviceType" xml:space="preserve">
+    <value>Network Device Type</value>
+  </data>
+  <data name="FilterByBridgeDevice" xml:space="preserve">
+    <value>Filter By Bridge</value>
+  </data>
+  <data name="FilterByGatewayDevice" xml:space="preserve">
+    <value>Filter By Gateway</value>
+  </data>
+  <data name="FilterShowAll" xml:space="preserve">
+    <value>Show All</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="NetwordDeviceSimcardList" xml:space="preserve">
+    <value>Simcard List</value>
+  </data>
+  <data name="NetworkDevice" xml:space="preserve">
+    <value>{0} Network Device</value>
+  </data>
+  <data name="IccId" xml:space="preserve">
+    <value>IccId</value>
+  </data>
+  <data name="NetworkDeviceName" xml:space="preserve">
+    <value>Network Device Name</value>
+  </data>
+  <data name="NetworkDeviceUsageInformation" xml:space="preserve">
+    <value>Network Device Usage Information</value>
+  </data>
+  <data name="AddWithNoLocation" xml:space="preserve">
+    <value>Add Without Location Information</value>
+  </data>
+  <data name="FilterByNoLocation" xml:space="preserve">
+    <value>Filter By NoLocation Data</value>
+  </data>
+  <data name="ProviderName" xml:space="preserve">
+    <value>Provider Name</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="DevicePassword" xml:space="preserve">
+    <value>Device Password</value>
+  </data>
+  <data name="NetworkDeviceIdentifier" xml:space="preserve">
+    <value>Device Identifier</value>
+  </data>
+  <data name="NetworkDeviceInformation" xml:space="preserve">
+    <value>Network Device Information</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="SimCardNumber" xml:space="preserve">
+    <value>Sim Card Number</value>
+  </data>
+  <data name="SimCardProvider" xml:space="preserve">
+    <value>Sim Card Provider</value>
+  </data>
+  <data name="IccdIdIsNotValid" xml:space="preserve">
+    <value>IccdId is not valid</value>
+  </data>
+  <data name="SimCardNumberIsNotValid" xml:space="preserve">
+    <value>Sim card number is not valid</value>
+  </data>
+  <data name="SimCardProviderIsNotValid" xml:space="preserve">
+    <value>Sim card provider is not valid</value>
+  </data>
+  <data name="ValidTo" xml:space="preserve">
+    <value>Valid To</value>
+  </data>
+  <data name="BusConnection" xml:space="preserve">
+    <value>Bus Connection</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="BusConnectionInterfaceType" xml:space="preserve">
+    <value>Bus Connection Interface Type</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UseSSL" xml:space="preserve">
+    <value>Use SSL</value>
+  </data>
+  <data name="BusConnectionList" xml:space="preserve">
+    <value>Bus Connection List</value>
+  </data>
+  <data name="SelectBusConnectionType" xml:space="preserve">
+    <value>Select Bus Connection Type</value>
+  </data>
+  <data name="LteBusConnection" xml:space="preserve">
+    <value>LTE Bus Connection</value>
+  </data>
+  <data name="MqttBusConnection" xml:space="preserve">
+    <value>MQTT Bus Connection</value>
+  </data>
+  <data name="LoraWanBusConnection" xml:space="preserve">
+    <value>LoraWan Bus Connection</value>
+  </data>
+  <data name="RuleManagement" xml:space="preserve">
+    <value>Rule Management</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="RuleInformation" xml:space="preserve">
+    <value>Rule Information</value>
+  </data>
+  <data name="RuleDetailList" xml:space="preserve">
+    <value>Rule Detail List</value>
+  </data>
+  <data name="AddDeviceInfo" xml:space="preserve">
+    <value>Add Device Info</value>
+  </data>
+  <data name="MessageText" xml:space="preserve">
+    <value>Message Text</value>
+  </data>
+  <data name="RuleDetail" xml:space="preserve">
+    <value>Rule Detail</value>
+  </data>
+  <data name="PauseRule" xml:space="preserve">
+    <value>Pause Rule</value>
+  </data>
+  <data name="PauseRuleUntill" xml:space="preserve">
+    <value>Pause Untill</value>
+  </data>
+  <data name="PauseUntilCouldNotBeAsNow" xml:space="preserve">
+    <value>Pause until should be bigger than current time</value>
+  </data>
+  <data name="PauseUntilCouldNotBeNull" xml:space="preserve">
+    <value>Need to Set date for Pause Until</value>
+  </data>
+  <data name="RuleMessageCouldNotBeEmpty" xml:space="preserve">
+    <value>Rule Message text could not be empty</value>
+  </data>
+  <data name="RuleNameCouldNotBeEmpty" xml:space="preserve">
+    <value>Rule name could not be empty</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="ActiveTimeList" xml:space="preserve">
+    <value>Active Time List</value>
+  </data>
+  <data name="AlarmLevel" xml:space="preserve">
+    <value>Alarm Level</value>
+  </data>
+  <data name="DeviceName" xml:space="preserve">
+    <value>Device Name</value>
+  </data>
+  <data name="FirstCompareConditionList" xml:space="preserve">
+    <value>First Compare Condition List</value>
+  </data>
+  <data name="SecondCompareConditionList" xml:space="preserve">
+    <value>Second Compare Condition List</value>
+  </data>
+  <data name="CompareOperatorType" xml:space="preserve">
+    <value>Compare Operator Type</value>
+  </data>
+  <data name="ActiveTime" xml:space="preserve">
+    <value>Active Time</value>
+  </data>
+  <data name="DaysOfTheWeek" xml:space="preserve">
+    <value>Days Of The Week</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="FromDateEveryYear" xml:space="preserve">
+    <value>From Date Every Year</value>
+  </data>
+  <data name="FromTime" xml:space="preserve">
+    <value>From Time</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="ToDateEveryYear" xml:space="preserve">
+    <value>To Date Every Year</value>
+  </data>
+  <data name="ToTime" xml:space="preserve">
+    <value>To Time</value>
+  </data>
+  <data name="AllDays" xml:space="preserve">
+    <value>All Days</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="CompareCondition" xml:space="preserve">
+    <value>Compare Condition</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>Second</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="ApplyFilter" xml:space="preserve">
+    <value>Apply Filter</value>
+  </data>
+  <data name="ResetFilter" xml:space="preserve">
+    <value>Reset Filter</value>
+  </data>
+  <data name="SelectDevice" xml:space="preserve">
+    <value>Select Device</value>
+  </data>
+  <data name="NotificationGroupData" xml:space="preserve">
+    <value>Notification Group Data</value>
+  </data>
+  <data name="NotificationGroupDataList" xml:space="preserve">
+    <value>Notification Group Data List</value>
+  </data>
+  <data name="AlertNotification" xml:space="preserve">
+    <value>Alert Notification</value>
+  </data>
+  <data name="InfoNotification" xml:space="preserve">
+    <value>Info Notification</value>
+  </data>
+  <data name="WarningNotification" xml:space="preserve">
+    <value>Warning Notification</value>
+  </data>
+  <data name="NotificationGroup" xml:space="preserve">
+    <value>Noyification Group</value>
+  </data>
+  <data name="ConfigureManually" xml:space="preserve">
+    <value>Configure manually</value>
+  </data>
+  <data name="ImportSensors" xml:space="preserve">
+    <value>Import sensors</value>
+  </data>
+  <data name="Bus/NetworkType" xml:space="preserve">
+    <value>Bus/Network Type</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Manufacturer" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="ConfigureGateway" xml:space="preserve">
+    <value>Configure Gateway</value>
+  </data>
+  <data name="ConnectionView" xml:space="preserve">
+    <value>Connection View</value>
+  </data>
+  <data name="GatewayConnection" xml:space="preserve">
+    <value>GatewayConnection</value>
+  </data>
+  <data name="CountryCode" xml:space="preserve">
+    <value>Country Code</value>
+  </data>
+  <data name="LatestValue" xml:space="preserve">
+    <value>Latest Value</value>
+  </data>
+  <data name="ExchangeDetailNumber" xml:space="preserve">
+    <value>Exchange Detail Number</value>
+  </data>
+  <data name="PlaceElement" xml:space="preserve">
+    <value>Place Element</value>
+  </data>
+  <data name="PlanViewManagement" xml:space="preserve">
+    <value>PlanView Management</value>
+  </data>
+  <data name="SetPanelViewHeader" xml:space="preserve">
+    <value>Set Panel View</value>
+  </data>
+  <data name="PlanView" xml:space="preserve">
+    <value>PlanView</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="PositionX" xml:space="preserve">
+    <value>Position X</value>
+  </data>
+  <data name="PositionY" xml:space="preserve">
+    <value>Position Y</value>
+  </data>
+  <data name="PlanViewName" xml:space="preserve">
+    <value>PlanView Name</value>
+  </data>
+  <data name="AddUnassingedNetworkDevice" xml:space="preserve">
+    <value>Add Unassinged NetworkDevices</value>
+  </data>
+  <data name="ManageUnassignedNetworkDevice" xml:space="preserve">
+    <value>Manage Unassigned NetworkDevices</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>Serial Number</value>
+  </data>
+  <data name="IMEI" xml:space="preserve">
+    <value>IMEI</value>
+  </data>
+  <data name="MACAddress" xml:space="preserve">
+    <value>Mac Address</value>
+  </data>
+  <data name="IsAssinged" xml:space="preserve">
+    <value>Is Assinged</value>
+  </data>
+</root>

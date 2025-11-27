@@ -1,0 +1,117 @@
+@page "/gateways"
+@using GreenerConfigurator.ClientCore.Services
+@using GreenerConfigurator.ClientCore.Models.Network
+@using Microsoft.AspNetCore.Authorization
+@inject NetworkDeviceService NetworkDeviceService
+
+<PageTitle>Gateways | Greener Configurator</PageTitle>
+
+<div class="page-header">
+    <h1>Gateways</h1>
+    <button class="btn btn-primary">
+        <span class="bi bi-plus-lg"></span> Add Gateway
+    </button>
+</div>
+
+@if (gateways == null)
+{
+    <div class="loading-state">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading gateways...</p>
+    </div>
+}
+else if (!gateways.Any())
+{
+    <div class="empty-state">
+        <div class="empty-icon">
+            <span class="bi bi-hdd-network"></span>
+        </div>
+        <h3>No Gateways Found</h3>
+        <p>Get started by adding your first gateway.</p>
+        <button class="btn btn-primary mt-3">Add Gateway</button>
+    </div>
+}
+else
+{
+    <div class="table-responsive card">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var gateway in gateways)
+                {
+                    <tr>
+                        <td>
+                            <div class="fw-bold">@gateway.Name</div>
+                            <div class="small text-muted">ID: @gateway.Id</div>
+                        </td>
+                        <td>@gateway.NetworkDeviceTypeName</td>
+                        <td>
+                            <span class="badge bg-success">Online</span> <!-- Mocked status for now -->
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private IEnumerable<NetworkDeviceViewModel>? gateways;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        
+        try 
+        {
+            gateways = await NetworkDeviceService.GetAllNetworkDevicesAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading gateways: {ex.Message}");
+            gateways = new List<NetworkDeviceViewModel>();
+        }
+    }
+}
+
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .loading-state, .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid var(--greener-border);
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        color: var(--greener-text-muted);
+        margin-bottom: 1rem;
+    }
+    
+    .card {
+        border: 1px solid var(--greener-border);
+        box-shadow: var(--shadow-sm);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+</style>

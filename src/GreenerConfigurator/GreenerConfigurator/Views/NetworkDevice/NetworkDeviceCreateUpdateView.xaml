@@ -1,0 +1,371 @@
+<UserControl x:Class="GreenerConfigurator.Views.NetworkDevice.NetworkDeviceCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:enumerations ="clr-namespace:Greener.Web.Definitions.Enums.Networks;assembly=Greener.Web.Definitions.Enums"
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.NetworkDevice"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             mc:Ignorable="d" >
+    <StackPanel>
+
+        <StackPanel Style="{StaticResource stpHeader}" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderNetworkDevice" Style="{StaticResource lblHeader}" Content="{Binding PageStatus}"
+                    ContentStringFormat="{x:Static mui:Language.NetworkDevice}"/>
+            <Label x:Name="lblHeaderNetworkDeviceRecord" Style="{StaticResource lblHeader}" 
+                   Content="{Binding NetworkDevice.Name}" />
+        </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region Netword Device -->
+
+            <StackPanel x:Name="stDataEntry" Grid.Column="0">
+
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderNetworkdDevice" Style="{StaticResource lblSecondHeader}" Content="{x:Static mui:Language.NetworkDeviceInformation}"/>
+                </StackPanel>
+
+                <Grid x:Name="grdNetworkDevice" Margin="20,20,0,0" HorizontalAlignment="Left" IsEnabled="{Binding IsLookupDeactivated}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblLocationNameHeader" Content="{x:Static mui:Language.LocationName}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox x:Name="txtLocationName" Grid.Row="0" Grid.Column="1" Text="{Binding NetworkDevice.LocationName}" 
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+
+                    <Label x:Name="lblLocationDetailNameHeader" Content="{x:Static mui:Language.LocationDetailName}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                    <TextBox x:Name="txtLocationDetailName" Grid.Column="1" Grid.Row="1" Text="{Binding NetworkDevice.LocationDetailName}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+
+                    <Label x:Name="lblNetworkDeviceNameHeader" Content="{x:Static mui:Language.NetworkDeviceName}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                    <TextBox x:Name="txtNetworkDeviceName" Grid.Column="1" Grid.Row="2" Text="{Binding NetworkDevice.Name}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding IsEditMode}" />
+
+                    <Label x:Name="lblNetworkDeviceTypeHeader" Content="{x:Static mui:Language.NetworkDeviceType}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3"/>
+                    <ComboBox Name="cmbNetworkDeviceType" Grid.Column="1" Grid.Row="3" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding NetworkDevice.NetworkDeviceType}"
+                               ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type enumerations:NetworkDeviceType }}}" IsEnabled="{Binding IsEditMode}"/>
+
+                    <Label x:Name="lblDeviceIdentifierHeader" Content="{x:Static mui:Language.NetworkDeviceIdentifier}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4"/>
+                    <TextBox x:Name="txtDeviceIdentifier" Grid.Column="1" Grid.Row="4" Text="{Binding NetworkDevice.NetworkDeviceIdentifier}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="True" />
+
+                    <Label x:Name="lblDevicePasswordHeader" Content="{x:Static mui:Language.DevicePassword}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5"/>
+                    <TextBox x:Name="txtDevicePassword" Grid.Column="1" Grid.Row="5" Text="{Binding NetworkDevice.DevicePassword}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="true" />
+
+                    <Label x:Name="lblDeviceLongitudeHeader" Content="{x:Static mui:Language.Longitude}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="6"/>
+                    <TextBox x:Name="txtDeviceLongitude" Grid.Column="1" Grid.Row="6" Text="{Binding NetworkDevice.Longitude}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="True" />
+
+                    <Label x:Name="lblDeviceLatitudeHeader" Content="{x:Static mui:Language.Latitude}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="7"/>
+                    <TextBox x:Name="txtDeviceLatitude" Grid.Column="1" Grid.Row="7" Text="{Binding NetworkDevice.Latitude}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="true" />
+
+                    <Grid x:Name="grdFooter" Grid.Column="1" Grid.Row="8" Margin="0,0,15,0"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnOk" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnOKCommand}" Content="{Binding ButtonOkText}" />
+                        <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelCommand}" Content="{x:Static mui:Language.Cancel}" />
+                    </Grid>
+
+                    <errorbox:ErrorBoxView x:Name="errBox" Grid.Row="9" Grid.Column="1" DataContext="{Binding NetworkDevice}"  />
+                </Grid>
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <!--#region Network Device BusConnection information  -->
+
+            <StackPanel x:Name="stSimcardList" Grid.Column="1" Margin="10,0,10,0"  
+                        HorizontalAlignment="Stretch" IsEnabled="{Binding IsAssginSimcardAvailable}">
+
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderNetworkdDeviceSimcardList" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.BusConnectionList}"/>
+                </StackPanel>
+
+                <StackPanel x:Name="stBusConnectionListInformation" Visibility="{Binding BusConnectionListVisibility}">
+
+                    <StackPanel Margin="0,10,0,5">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="btnAdd"  Grid.Column="0" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnAddBusConnectionCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttAdd" Content="{x:Static mui:Language.Add}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnEdit"  Grid.Column="1" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnEditBusConnectionCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/edit-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttEdit" Content="{x:Static mui:Language.Edit}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnDelete"  Grid.Column="2" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnDeleteBusConnectionCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttDelete" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                    <ListView x:Name="lvBusConnection" ItemsSource="{Binding BusConnectionList}" MaxHeight="500"  HorizontalContentAlignment="Stretch"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedBusConnection}" >
+                     
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                                <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnDeleteBusConnectionCommand, 
+                                                RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="false" >
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}" 
+                                            extension:GridViewSort.PropertyName="Name"
+                                            Header="{x:Static mui:Language.Name}" Width="200" />
+                                <GridViewColumn DisplayMemberBinding="{Binding BusInterfaceConnectionTypeName}" 
+                                            extension:GridViewSort.PropertyName="SimCardProvider"
+                                            Header="{x:Static mui:Language.BusConnectionInterfaceType}" Width="300" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </StackPanel>
+
+                <StackPanel x:Name="stManageSelectBusConnectionType" Visibility="{Binding SelectBusConnectionTypeVisibility}">
+
+                    <Grid Margin="5,20,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label x:Name="lblBusInterfaceConnectionTypeHeader" Content="{x:Static mui:Language.SelectBusConnectionType}"  
+                               Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                        <ComboBox Name="cmbBusInterfaceConnectionType" Grid.Column="1" Grid.Row="2" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding SelectedBusInterfaceConnectionType}" 
+                               ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type enumerations:BusInterfaceConnectionType }}}"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+                <!--#region SimCard List information -->
+
+                <!--<StackPanel x:Name="stSimCardListInformation" Visibility="{Binding SimCardListVisibility}">
+
+                    <StackPanel Margin="0,10,0,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnAdd"  Grid.Column="0" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnAddSimCardCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttAdd" Content="{x:Static mui:Language.Add}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnEdit"  Grid.Column="1" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnEditSimCardCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/edit-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttEdit" Content="{x:Static mui:Language.Edit}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+                            <Button x:Name="btnDelete"  Grid.Column="2" Style="{StaticResource btnImage}" 
+                                Command ="{Binding OnDeleteSimCardCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                                </StackPanel>
+                                <Button.ToolTip>
+                                    <ToolTip x:Name="ttDelete" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                                </Button.ToolTip>
+                            </Button>
+
+                        </Grid>
+                    </StackPanel>
+
+                    <ListView x:Name="lvSimcard" ItemsSource="{Binding SimCardList}" MaxHeight="500"  HorizontalContentAlignment="Stretch"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedSimCard}" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                                <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnDeleteSimCardCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                                <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="false" >
+                                <GridViewColumn DisplayMemberBinding="{Binding ICCDID}" 
+                                            extension:GridViewSort.PropertyName="ICCDID"
+                                            Header="{x:Static mui:Language.IccId}" Width="200" />
+                                <GridViewColumn DisplayMemberBinding="{Binding SimCardProvider}" 
+                                            extension:GridViewSort.PropertyName="SimCardProvider"
+                                            Header="{x:Static mui:Language.ProviderName}" Width="300" />
+                                <GridViewColumn DisplayMemberBinding="{Binding SimCardStateName}" 
+                                            extension:GridViewSort.PropertyName="State"
+                                            Header="{x:Static mui:Language.State}" Width="300" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </StackPanel>
+
+                <StackPanel x:Name="stSimCardDataEntry" Visibility="{Binding SimCardDataEntryVisibility}">
+
+                    <Grid x:Name="grdSimCardDataEntry" Margin="20,20,0,0" HorizontalAlignment="Left"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="60"/>
+
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label x:Name="lblICCDIDHeader" Content="{x:Static mui:Language.IccId}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                        <TextBox x:Name="txtICCDID" Grid.Row="0" Grid.Column="1" Text="{Binding SimCardDataEntry.ICCDID,ValidatesOnDataErrors=True}" 
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding SimCardDataEntryEnalble}" />
+
+                        <Label x:Name="lblSimCardNumberHeader" Content="{x:Static mui:Language.SimCardNumber}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                        <TextBox x:Name="txtSimCardNumber" Grid.Column="1" Grid.Row="1" Text="{Binding SimCardDataEntry.SimCardNumber,ValidatesOnDataErrors=True}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding SimCardDataEntryEnalble}" />
+
+                        <Label x:Name="lblSimCardProviderHeader" Content="{x:Static mui:Language.SimCardProvider}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                        <TextBox x:Name="txtSimCardProvider" Grid.Column="1" Grid.Row="2" Text="{Binding SimCardDataEntry.SimCardProvider,ValidatesOnDataErrors=True}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding SimCardDataEntryEnalble}" />
+
+                        <Label x:Name="lblIPHeader" Content="{x:Static mui:Language.IP}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3"/>
+                        <TextBox x:Name="txtIP" Grid.Column="1" Grid.Row="3" Text="{Binding SimCardDataEntry.IP,ValidatesOnDataErrors=True}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="{Binding SimCardDataEntryEnalble}" />
+
+                        <Label x:Name="lblSimCardStateHeader" Content="{x:Static mui:Language.ValidTo}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4"/>
+                        <ComboBox Name="cmbSimCardState" Grid.Column="1" Grid.Row="4" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Width="350" SelectedItem="{Binding SimCardDataEntry.SimCardState}"
+                               ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type enumerations:SimCardState }}}" IsEnabled="{Binding IsEditMode}"/>
+
+                        <Label x:Name="lblValidToHeader" Content="{x:Static mui:Language.State}" Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5"/>
+                        <DatePicker x:Name="clValidTo" Grid.Column="1" Grid.Row="5" SelectedDate="{Binding SimCardDataEntry.ValidToDate,ValidatesOnDataErrors=True}" 
+                            DisplayDate="{Binding SimCardDataEntry.ValidToDate}" IsEnabled="{Binding SimCardDataEntryEnalble}"  />
+
+                        <Grid x:Name="grdSimCardDataEntryFooter" Grid.Column="1" Grid.Row="6" Margin="0,0,15,0"   >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnOkSimCard" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnOKSimCardCommand}" Content="{Binding ButtonOkSimCardText}" />
+                            <Button x:Name="btnCancelSimCard" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelSimCardCommand}" Content="{x:Static mui:Language.Cancel}" />
+                        </Grid>
+
+                        <errorbox:ErrorBoxView x:Name="errSimCardBox" Grid.Row="7" Grid.Column="1" DataContext="{Binding SimCardDataEntry}"  />
+                    </Grid>
+
+
+                </StackPanel>-->
+
+                <!--#endregion-->
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+        </Grid>
+
+    </StackPanel>
+</UserControl>

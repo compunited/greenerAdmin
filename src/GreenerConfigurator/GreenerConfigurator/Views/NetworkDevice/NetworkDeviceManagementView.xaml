@@ -1,0 +1,269 @@
+<UserControl x:Class="GreenerConfigurator.Views.NetworkDevice.NetworkDeviceManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             mc:Ignorable="d">
+
+    <StackPanel VerticalAlignment="Stretch">
+
+        <StackPanel Style="{StaticResource stpHeader}">
+            <Label x:Name="lblHeader"
+                   Style="{StaticResource lblHeader}"
+                   Content="{x:Static mui:Language.NetworkDeviceManagement}" />
+        </StackPanel>
+
+        <Grid x:Name="grdMain"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Top">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--#region Location Information  -->
+
+            <StackPanel Margin="15,15,5,0"
+                        Grid.Column="0">
+
+                <!--#region Location List -->
+
+                <StackPanel>
+                    
+                    <Button x:Name="btnAddUnassingedNetworkDevice"
+                            Style="{StaticResource btnMain}"
+                            Content="{x:Static mui:Language.ManageUnassignedNetworkDevice}"
+                            Command="{Binding OnManageUnassignedNetworkDeviceCommand}">
+                    </Button>
+
+                    <StackPanel Style="{StaticResource stpSecondHeader}">
+                        <Label x:Name="lblHeaderLocationList"
+                               Style="{StaticResource lblSecondHeader}"
+                               Content="{x:Static mui:Language.LocationList}" />
+                    </StackPanel>
+
+                    <CheckBox Style="{StaticResource ToggleCheckBox}"
+                              IsChecked="{Binding FilterByLocation}"
+                              Height="50"
+                              x:Name="rdbFilterByLocation"
+                              Content="{x:Static mui:Language.FilterByLocation  }" />
+
+                    <ListView x:Name="lvLocation"
+                              ItemsSource="{Binding LocationList}"
+                              SelectionMode="Single"
+                              SelectedItem="{Binding SelectedLocation}"
+                              IsEnabled="{Binding IsLocationListEnable}"
+                              MaxHeight="400"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              ScrollViewer.CanContentScroll="False">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem"
+                                   BasedOn="{StaticResource MainListViewItem}" />
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true"
+                                      ColumnHeaderToolTip="{x:Static mui:Language.LocationName}">
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=LocationName}"
+                                                Header="{x:Static mui:Language.LocationName}"
+                                                Width="450" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </StackPanel>
+
+                <!--#endregion-->
+
+                <!--#region Location Detail -->
+
+                <StackPanel Margin="0,10,0,0">
+
+                    <StackPanel Style="{StaticResource stpSecondHeader}">
+                        <Label x:Name="lblHeaderLocationDetailList"
+                               Style="{StaticResource lblSecondHeader}"
+                               Content="{x:Static mui:Language.LocationDetailList}" />
+                    </StackPanel>
+                    <CheckBox Style="{StaticResource ToggleCheckBox}"
+                              IsChecked="{Binding FilterByLocationDetail}"
+                              Height="50"
+                              x:Name="rdbFilterByLocationDetail"
+                              Content="{x:Static mui:Language.FilterByLocationDetail  }" />
+
+                    <TreeView x:Name="trvLocationDetail"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Background="Transparent"
+                              VirtualizingStackPanel.IsVirtualizing="True"
+                              ItemsSource="{Binding LocationDetailTreeList}"
+                              VirtualizingStackPanel.VirtualizationMode="Recycling"
+                              Margin="0,5,0,0"
+                              Width="475"
+                              MaxHeight="500"
+                              SelectedItemChanged="trvLocationDetail_SelectedItemChanged" />
+
+                </StackPanel>
+
+                <!--#endregion-->
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <!--#region NetworkDevice information -->
+
+            <StackPanel Margin="15,15,5,0"
+                        Grid.Column="1">
+
+                <StackPanel Style="{StaticResource stpSecondHeader}">
+                    <Label x:Name="lblHeaderNetworkDeviceList"
+                           Style="{StaticResource lblSecondHeader}"
+                           Content="{x:Static mui:Language.NetworkDeviceList}" />
+                </StackPanel>
+
+                <StackPanel  IsEnabled="{Binding IsNetworkDeviceListAvailbale}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--<Button x:Name="btnAddWithNoLocation"  Grid.Column="0" Style="{StaticResource btnImage}" 
+                                Command="{Binding OnAddNetworkDeviceWithNoLocationCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <ToolTip x:Name="ttAddWithNoLocation" Content="{x:Static mui:Language.AddWithNoLocation}" 
+                                         Style="{StaticResource ttStyle}" />
+                            </Button.ToolTip>
+                        </Button>-->
+                        <Button x:Name="btnAdd"
+                                Grid.Column="1"
+                                Style="{StaticResource btnImage}"
+                                Command="{Binding OnAddNetworkDeviceCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/Icons/add-icon.png"
+                                       Style="{StaticResource MenuImageStyle}" />
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <ToolTip x:Name="ttAdd"
+                                         Content="{x:Static mui:Language.Add}"
+                                         Style="{StaticResource ttStyle}" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button x:Name="btnEdit"
+                                Grid.Column="2"
+                                Style="{StaticResource btnImage}"
+                                Command="{Binding OnEditNetworkDeviceCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/Icons/edit-icon.png"
+                                       Style="{StaticResource MenuImageStyle}" />
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <ToolTip x:Name="ttEdit"
+                                         Content="{x:Static mui:Language.Edit}"
+                                         Style="{StaticResource ttStyle}" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button x:Name="btnDelete"
+                                Grid.Column="3"
+                                Style="{StaticResource btnImage}"
+                                Command="{Binding OnDeleteNetworkDeviceCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/Icons/delete-icon.png"
+                                       Style="{StaticResource MenuImageStyle}" />
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <ToolTip x:Name="ttDelete"
+                                         Content="{x:Static mui:Language.Delete}"
+                                         Style="{StaticResource ttStyle}" />
+                            </Button.ToolTip>
+                        </Button>
+                        <Button x:Name="btnInfo"
+                                Grid.Column="4"
+                                Style="{StaticResource btnImage}"
+                                Command="{Binding OnInfoNetworkDeviceCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/Icons/info-icon.png"
+                                       Style="{StaticResource MenuImageStyle}" />
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <ToolTip x:Name="ttInfo"
+                                         Content="{x:Static mui:Language.Info}"
+                                         Style="{StaticResource ttStyle}" />
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Grid Grid.Column="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--<RadioButton Style="{StaticResource ToggleRadioButton}" IsChecked="{Binding FilterShowAll}" Grid.Column="0"
+                                     x:Name="rdbFilterShowAll" Content="{x:Static mui:Language.FilterShowAll}"/>
+                            <RadioButton Style="{StaticResource ToggleRadioButton}" IsChecked="{Binding FilterByGatewayDevice}" Grid.Column="1"
+                                     x:Name="rdbFilterByGatewayDevice" Content="{x:Static mui:Language.FilterByGatewayDevice }"/>
+                            <RadioButton Style="{StaticResource ToggleRadioButton}" IsChecked="{Binding FilterByBridgeDevice}" Grid.Column="2"
+                                     x:Name="rdbFilterByBridgeDevice" Content="{x:Static mui:Language.FilterByBridgeDevice  }"/>-->
+
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+
+                <!--#region NetworkDevice List -->
+
+                <ListView x:Name="lvNetworkDevice"
+                          ItemsSource="{Binding NetworkDeviceList}"
+                          SelectionMode="Single"
+                          SelectedItem="{Binding SelectedNetworkDevice}"
+                          IsEnabled="{Binding IsNetworkDeviceListEnable}"
+                          MaxHeight="400"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          ScrollViewer.CanContentScroll="False">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem"
+                               BasedOn="{StaticResource MainListViewItem}">
+                            <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                    Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                    AncestorType={x:Type UserControl}}, Path=DataContext.OnEditNetworkDeviceCommand}" />
+                            <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter"
+                                    Value="{Binding}" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="true"
+                                  ColumnHeaderToolTip="{x:Static mui:Language.Name}">
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}"
+                                            Header="{x:Static mui:Language.Name}"
+                                            Width="300" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NetworkDeviceTypeName}"
+                                            Header="{x:Static mui:Language.NetworkDeviceType}"
+                                            Width="350" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NetworkDeviceSubTypeName}"
+                                            Header="{x:Static mui:Language.NetworkDeviceSubType}"
+                                            Width="350" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <!--#endregion-->
+
+
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+        </Grid>
+
+    </StackPanel>
+
+</UserControl>

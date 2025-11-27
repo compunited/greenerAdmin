@@ -1,4 +1,4 @@
-@GreenerConfigurator.Web.Server_HostAddress = http://localhost:5056
+@GreenerConfigurator.Web.Server_HostAddress = http://localhost:5288
 
 GET {{GreenerConfigurator.Web.Server_HostAddress}}/weatherforecast/
 Accept: application/json

@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GreenerConfigurator.Controls.Lookup
+{
+    public class LookupDataModel
+    {
+
+        public string Id { get; set; }
+
+        public string Name { get; set; }
+
+        public object ExtraField { get; set; }
+
+    }
+}

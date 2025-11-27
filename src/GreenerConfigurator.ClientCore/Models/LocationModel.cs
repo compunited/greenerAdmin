@@ -1,15 +1,30 @@
-namespace GreenerConfigurator.ClientCore.Models;
+﻿using Greener.Web.Definitions.Api.MasterData.Location;
+using Greener.Web.Definitions.Enums;
 
-/// <summary>
-/// Simplified representation of a managed building or installation.
-/// </summary>
-public sealed class LocationModel
+
+namespace GreenerConfigurator.ClientCore.Models
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; } = string.Empty;
-    public string? ExternalId { get; set; }
-    public string? Address { get; set; }
-    public string? City { get; set; }
-    public string? Country { get; set; }
-    public IList<LocationDetailModel> Details { get; set; } = new List<LocationDetailModel>();
+    public class LocationModel : LocationDto
+    {
+        
+        public string LocationTypeName
+        {
+            get
+            {
+                var temp = string.Empty;
+
+                try
+                {
+                    temp = LocationType.GetDisplayAttributeName();
+                }
+                catch
+                {
+                    temp = LocationType.ToString();
+                }
+
+                return temp;
+            }
+        }
+
+    }
 }

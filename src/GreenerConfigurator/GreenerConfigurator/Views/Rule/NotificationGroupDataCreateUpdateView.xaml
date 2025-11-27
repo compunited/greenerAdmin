@@ -1,0 +1,69 @@
+<UserControl x:Class="GreenerConfigurator.Views.Rule.NotificationGroupDataCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.Rule"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             xmlns:controls="clr-namespace:GreenerConfigurator.Controls"
+             xmlns:enumerations ="clr-namespace:Greener.Web.Definitions.Enums;assembly=Greener.Web.Definitions.Enums"    
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d">
+    <StackPanel VerticalAlignment="Stretch">
+
+        <StackPanel Style="{StaticResource stpHeader}" FlowDirection="LeftToRight" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderPageStatusName" Style="{StaticResource lblHeader}" Content="{Binding PageStatus}"
+                    ContentStringFormat="{x:Static mui:Language.ActiveTime}"/>
+            <Label  Style="{StaticResource lblHeader}" Content="{Binding ExteraHeaderText}"/>
+            <Label x:Name="lblHeaderComapreCondition" Style="{StaticResource lblHeader}" Content="{x:Static mui:Language.NotificationGroupData}"/>
+        </StackPanel>
+
+        <Grid x:Name="grdCompareCondition" Margin="5,5,0,0" HorizontalAlignment="Left" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions >
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="{x:Static mui:Language.NotificationGroup}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+            <StackPanel Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Orientation="Horizontal">
+                <TextBox x:Name="txtLocationName" Text="{Binding NotificationGroupDataModel.NotificationGroupName, ValidatesOnDataErrors=True}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+                <Button x:Name="btnLocationLookup" Style="{StaticResource btnLookup}" Content="..." 
+                                Command="{Binding OnNotificationGroupLookupCommand}" IsEnabled="{Binding IsEditMode}"/>
+            </StackPanel>
+
+            <CheckBox Content="{x:Static mui:Language.InfoNotification}" Grid.Column="1" Grid.Row="1" 
+                      IsChecked="{Binding NotificationGroupDataModel.InfoNotificationEnabled}" IsEnabled="{Binding IsEditMode}"/>
+            <CheckBox Content="{x:Static mui:Language.WarningNotification}" Grid.Column="1" Grid.Row="2" 
+                      IsChecked="{Binding NotificationGroupDataModel.WarningNotificationEnabled}" IsEnabled="{Binding IsEditMode}"/>
+            <CheckBox Content="{x:Static mui:Language.AlertNotification}" Grid.Column="1" Grid.Row="3" 
+                      IsChecked="{Binding NotificationGroupDataModel.AlertNotificationEnabled}" IsEnabled="{Binding IsEditMode}"/>
+
+            <Grid x:Name="grdFooter" Grid.Column="1" Grid.Row="6" Margin="0,0,15,0"   >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnOk" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnOKCommand}" Content="{Binding ButtonOkText}" />
+                <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelCommand}" Content="{x:Static mui:Language.Cancel}" />
+            </Grid>
+
+            <errorbox:ErrorBoxView x:Name="errBox" Grid.Row="7" Grid.Column="1" DataContext="{Binding RuleDetail}"  />
+        </Grid>
+
+    </StackPanel>
+</UserControl>

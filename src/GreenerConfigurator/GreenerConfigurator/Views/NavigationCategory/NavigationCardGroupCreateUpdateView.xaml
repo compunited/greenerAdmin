@@ -1,0 +1,327 @@
+<UserControl x:Class="GreenerConfigurator.Views.NavigationCategory.NavigationCardGroupCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.NavigationCategory"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:lookoup="clr-namespace:GreenerConfigurator.Controls.Lookup"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             mc:Ignorable="d" >
+    <StackPanel VerticalAlignment="Stretch" >
+
+        <StackPanel Style="{StaticResource stpHeader}" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderNavigationCardGroup" Style="{StaticResource lblHeader}" Content="{Binding PageStatus}"
+                    ContentStringFormat="{x:Static mui:Language.NavigationCardGroupHeader}"/>
+            <Label x:Name="lblHeaderNavigationCardGroupRecord" Style="{StaticResource lblHeader}" 
+                                        Content="{Binding NavigationCardGroup.Name}" />
+        </StackPanel>
+
+        <Grid x:Name="grdDataEntryMain" Margin="15,5,5,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" >
+
+                <Grid x:Name="grdNavigationCardGroup" Margin="20,20,0,0" HorizontalAlignment="Left" IsEnabled="{Binding IsLookupDeactivated}" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblCategoryNameHeader" Content="{x:Static mui:Language.NavigationCategoryName}" 
+                       Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"/>
+                    <Label x:Name="txtCategoryName" Grid.Row="0" Grid.Column="1" Content="{Binding NavigationCardGroup.NavigationCategoryName}" 
+                             Width="350" Style="{StaticResource lblDataEntryHeader}" />
+
+                    <Label x:Name="lblCardGroupNameHeader" Content="{x:Static mui:Language.Name}" 
+                       Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"/>
+                    <TextBox x:Name="txtCardGroupName" Grid.Row="1" Grid.Column="1" Text="{Binding NavigationCardGroup.Name, ValidatesOnDataErrors=True}" 
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}"  IsEnabled="{Binding IsEditMode}" />
+
+                    <Label x:Name="lblLocationNameHeader" Content="{x:Static mui:Language.LocationName}"  Style="{StaticResource lblDataEntryHeader}"
+                            HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"/>
+                    <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" Orientation="Horizontal">
+                        <TextBox x:Name="txtLocationName" Text="{Binding NavigationCardGroup.LocationName, ValidatesOnDataErrors=True}"
+                             Width="350" MaxLength="150" Style="{StaticResource txtMain}" IsEnabled="False" />
+                        <Button x:Name="btnLocationLookup" Style="{StaticResource btnLookup}" 
+                                Content="..." Command="{Binding OnLocationLookupCommand}" IsEnabled="{Binding IsNavigationGroupLocationAvailble}"/>
+                    </StackPanel>
+
+                    <Grid x:Name="grdManageCardAndCategory" Grid.Column="1" Grid.Row="3" Margin="0,0,15,0"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnManageCards" Style="{StaticResource btnPrimary}" Grid.Column="1"   IsEnabled="{Binding IsAssginedAvailable}"
+                                Command="{Binding OnManageCardsCommand}" Content="{x:Static mui:Language.ManageCards}" />
+                        <Button x:Name="btnManageCategories" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0"  IsEnabled="{Binding IsAssginedAvailable}"
+                            Command="{Binding OnManageCategoriesCommand}" Content="{x:Static mui:Language.ManageCategories}" />
+                    </Grid>
+
+                    <Grid x:Name="grdFooter" Grid.Column="1" Grid.Row="4" Margin="0,0,15,0"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnOk" Style="{StaticResource btnPrimary}" Grid.Column="1"  
+                                Command="{Binding OnSaveCommand}" Content="{Binding ButtonOkText}" />
+                        <Button x:Name="btnCancel" Style="{StaticResource btnPrimaryCancel}" Grid.Column="0" 
+                            Command="{Binding OnCancelCommand}" Content="{x:Static mui:Language.Cancel}" />
+                    </Grid>
+
+                    <errorbox:ErrorBoxView x:Name="errBox" Grid.Row="4" Grid.Column="1" DataContext="{Binding NavigationCardGroup}"  />
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel x:Name="stpLookup" Margin="20,0,20,0" Grid.Column="1"  >
+
+                <Grid x:Name="grdLookup" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <lookoup:LookupView x:Name="lookupLocation"  DataContext="{Binding LocationLookup}" Grid.Column="0"   />
+
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!--#region Manage Cards -->
+
+        <Grid Margin="15,5,5,5" Visibility="{Binding ManageCardVisiblity}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region Grouped Navigation Card list  -->
+
+            <StackPanel x:Name="stGroupedNavigationCardList"  Grid.Column="0" HorizontalAlignment="Stretch" >
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderGroupedNavigationCardList" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.GroupedNavigationCardList}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnDeleteCard"  Grid.Column="2" Style="{StaticResource btnImage}"  IsEnabled="{Binding IsEditMode}"
+                                Command ="{Binding OnDeleteNavigationCardToGroupCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/Icons/delete-icon.png" Style="{StaticResource MenuImageStyle}" />
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <ToolTip x:Name="ttDeleteCard" Content="{x:Static mui:Language.Delete}" 
+                                         Style="{StaticResource ttStyle}" />
+                            </Button.ToolTip>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+
+                <ListView x:Name="GroupedLogicalDeviceNavigationCard" ItemsSource="{Binding GroupedNavigationCardList}" MaxHeight="500"  HorizontalContentAlignment="Stretch"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedGroupedNavigationCard}" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                            <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnEditPaintCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                            <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="false" >
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=CardName}" 
+                                            Header="{x:Static mui:Language.NavigationCardCardName}" Width="350"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=LocationName}" 
+                                            Header="{x:Static mui:Language.LocationName}" Width="250"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <!--#region Not Grouped Navigation Card list  -->
+
+            <StackPanel x:Name="stNotGroupedNavigationCardList"  Grid.Column="1" HorizontalAlignment="Stretch" >
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderNotGroupedNavigationCardList" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.NotGroupedNavigationCardList}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnAdd"  Grid.Column="0" Style="{StaticResource btnImage}"  IsEnabled="{Binding IsEditMode}"
+                                Command="{Binding OnAddNavigationCardToGroupCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Assets/Icons/add-icon.png" Style="{StaticResource MenuImageStyle}" />
+                            </StackPanel>
+                            <Button.ToolTip>
+                                <ToolTip x:Name="ttAdd" Content="{x:Static mui:Language.Add}" 
+                                         Style="{StaticResource ttStyle}" />
+                            </Button.ToolTip>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+
+                <ListView x:Name="NotGroupedLogicalDeviceNavigationCard" ItemsSource="{Binding NotGroupedNavigationCardList}" MaxHeight="500"  HorizontalContentAlignment="Stretch"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedNotGroupedNavigationCard}"   >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                            <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnEditPaintCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                            <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="false" >
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=CardName}" 
+                                            Header="{x:Static mui:Language.NavigationCardCardName}" Width="350"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=LocationName}" 
+                                            Header="{x:Static mui:Language.LocationName}" Width="250"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+        </Grid>
+
+        <!--#endregion-->
+
+        <!--#region Manage Categories -->
+
+        <Grid Margin="15,5,5,5" Visibility="{Binding ManageCategoriesVisiblity}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region Assigned Categories list  -->
+
+            <StackPanel x:Name="stAssignedCategories"  Grid.Column="0" HorizontalAlignment="Stretch" >
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderAssignedCategories" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.AssignedCategoriesList}"/>
+                </StackPanel>
+
+                <ListView x:Name="lvAssignedCategories" ItemsSource="{Binding AssignedCategoriesList}" MaxHeight="500"  HorizontalContentAlignment="Stretch"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedAssignedCategory}" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                            <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnRemoveAssignedCategoryCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                            <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="false" >
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NavigationCategory}" 
+                                            Header="{x:Static mui:Language.NavigationCategoryName}" Width="350"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+            <StackPanel x:Name="stButton" Grid.Column="1">
+                <Grid x:Name="grdPaintButtons" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="btnAssignCategory"  Grid.Row="1" Style="{StaticResource btnImage}" Command="{Binding OnAssignCategoryCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/Icons/double-left-arrows-symbol.png" Style="{StaticResource MenuImageStyle}" />
+                        </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip x:Name="ttAssignCategory" Content="{x:Static mui:Language.AssginCategory }" Style="{StaticResource ttStyle}" />
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnRemoveAssingedCategory" Grid.Row="2" Style="{StaticResource btnImage}" Command="{Binding OnRemoveAssignedCategoryCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/Icons/double-right-arrows-symbol.png" Style="{StaticResource MenuImageStyle}" />
+                        </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip x:Name="ttRemoveAssingedCategory" Content="{x:Static mui:Language.RemoveCategory}" Style="{StaticResource ttStyle}" />
+                        </Button.ToolTip>
+                    </Button>
+
+                </Grid>
+            </StackPanel>
+
+            <!--#region Available Categories List -->
+
+            <StackPanel x:Name="stAvailableCategoriesList"  Grid.Column="2" HorizontalAlignment="Stretch" >
+                <StackPanel Style="{StaticResource stpSecondHeader}" Orientation="Horizontal" >
+                    <Label x:Name="lblHeaderAvailableCategoriesList" Style="{StaticResource lblSecondHeader}" 
+                           Content="{x:Static mui:Language.AvailableCategoriesList}"/>
+                </StackPanel>
+
+                <ListView x:Name="lvAvailableCategoriesList" ItemsSource="{Binding AvailableCategoriesList}" MaxHeight="500"  HorizontalContentAlignment="Stretch"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          SelectionMode="Single" SelectedItem="{Binding SelectedAvailableCategory}"   >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource MainListViewItem}">
+                            <Setter Property="extension:HandleDoubleClickBehavior.Command"
+                                        Value="{Binding DataContext.OnAssignCategoryCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}, Mode=FindAncestor}}" />
+                            <Setter Property="extension:HandleDoubleClickBehavior.CommandParameter" Value="{Binding}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="false" >
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NavigationCategory}" 
+                                            Header="{x:Static mui:Language.NavigationCategoryName}" Width="350"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+
+            <!--#endregion-->
+
+        </Grid>
+
+        <!--#endregion-->
+
+
+    </StackPanel>
+
+</UserControl>

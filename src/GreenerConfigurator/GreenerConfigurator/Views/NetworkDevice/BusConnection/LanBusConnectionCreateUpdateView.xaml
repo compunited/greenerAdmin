@@ -1,0 +1,26 @@
+<UserControl x:Class="GreenerConfigurator.Views.NetworkDevice.BusConnection.LanBusConnectionCreateUpdateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GreenerConfigurator.Views.NetworkDevice.BusConnection"
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:extension="clr-namespace:GreenerConfigurator.Utilities.Extensions"
+             xmlns:enumerations ="clr-namespace:Greener.Web.Definitions.Enums;assembly=Greener.Web.Definitions.Enums"
+             xmlns:enumerationsNetworkDevice ="clr-namespace:Greener.Web.Definitions.Enums.Networks;assembly=Greener.Web.Definitions.Enums"
+             xmlns:errorbox="clr-namespace:GreenerConfigurator.Controls.ErrorBox"
+             mc:Ignorable="d" >
+
+    <StackPanel>
+
+        <StackPanel Style="{StaticResource stpHeader}" Orientation="Horizontal" >
+            <Label x:Name="lblHeaderBusConnection" Style="{StaticResource lblHeader}" Content="{Binding PageStatus}"
+                    ContentStringFormat="{x:Static mui:Language.NetworkDevice}"/>
+            <Label x:Name="lblHeaderBusConnectionRecord" Style="{StaticResource lblHeader}" 
+                   Content="{Binding BusConnection.Name}" />
+        </StackPanel>
+
+
+    </StackPanel>
+
+</UserControl>

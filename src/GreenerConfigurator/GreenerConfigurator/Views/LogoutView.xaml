@@ -1,0 +1,31 @@
+<UserControl x:Class="GreenerConfigurator.Views.LogoutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="clr-namespace:GreenerConfigurator.ClientCore.Utilities.MUI;assembly=GreenerConfigurator.ClientCore"
+             xmlns:local="clr-namespace:GreenerConfigurator.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="btnStyle" TargetType="Button" BasedOn="{StaticResource btnPrimaryCancel}">
+            <Setter Property="Padding" Value="35,10,35,10" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Button x:Name="btnExit" Style="{StaticResource btnStyle}"  
+                                Command="{Binding OnExitCommand}" Content="{x:Static mui:Language.Exit}" />
+                <Button x:Name="btnLogout" Style="{StaticResource btnStyle}" 
+                            Command="{Binding OnLogoutCommand}" Content="{x:Static mui:Language.LogoutAndExit}" />
+            </StackPanel>
+        </Grid>
+
+    </StackPanel>
+</UserControl>

@@ -1,39 +1,101 @@
-@page "/"
+﻿@page "/"
 
-<PageTitle>Greener Admin</PageTitle>
+<PageTitle>Dashboard | Greener Configurator</PageTitle>
 
-<h1 class="display-6 mb-3">Welcome to Greener Admin</h1>
-<p>
-    This hosted Blazor WebAssembly experience demonstrates how the legacy WPF configurator can be modernised.
-    Use the navigation menu to manage <strong>locations</strong>, <strong>rules</strong>, and the rest of the platform assets.
-</p>
+<div class="dashboard-header">
+    <h1>Welcome back!</h1>
+    <p class="text-muted">Here's what's happening with your configurations today.</p>
+</div>
 
-<div class="row gy-4">
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h2 class="h5">Locations</h2>
-                <p>Browse, create, and update locations plus their nested floor details.</p>
-                <NavLink class="btn btn-primary" href="locations">Open locations</NavLink>
-            </div>
+<div class="dashboard-grid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Active Configurations</h5>
+            <p class="card-text display-4">12</p>
+            <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h2 class="h5">Rules</h2>
-                <p>Review operational rules, update the schedule, or deactivate noisy alerts.</p>
-                <NavLink class="btn btn-primary" href="rules">Open rules</NavLink>
-            </div>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Pending Updates</h5>
+            <p class="card-text display-4">3</p>
+            <a href="#" class="btn btn-sm btn-outline-warning">Review</a>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-            <div class="card-body">
-                <h2 class="h5">Documentation</h2>
-                <p>Need the bigger picture? The implementation guide explains the full roadmap.</p>
-                <a class="btn btn-secondary" target="_blank" href="docs/ImplementationGuide.md">Read the guide</a>
-            </div>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">System Status</h5>
+            <p class="card-text text-success fw-bold">Operational</p>
+            <span class="text-muted small">Last check: 5 mins ago</span>
         </div>
     </div>
 </div>
+
+<div class="mt-5">
+    <h3>Quick Actions</h3>
+    <div class="action-buttons">
+        <button class="btn btn-primary me-2">
+            <span class="bi bi-plus-circle"></span> New Configuration
+        </button>
+        <button class="btn btn-outline-secondary">
+            <span class="bi bi-gear"></span> Settings
+        </button>
+    </div>
+</div>
+
+<style>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .card {
+        background: white;
+        border: 1px solid var(--greener-border);
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .card-title {
+        color: var(--greener-text-muted);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--greener-primary-dark);
+        margin-bottom: 1rem;
+    }
+    
+    .text-muted {
+        color: var(--greener-text-muted);
+    }
+    
+    .btn-outline-primary {
+        color: var(--greener-primary);
+        border-color: var(--greener-primary);
+    }
+    
+    .btn-outline-primary:hover {
+        background-color: var(--greener-primary);
+        color: white;
+    }
+</style>
